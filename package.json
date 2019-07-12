@@ -1,9 +1,9 @@
 {
   "name": "@deepstream/protobuf",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.4",
   "description": "The protobuf protocol wrapper used by deepstream.io",
   "scripts": {
-    "generate": "rm -rf generated && mkdir generated && pbjs -t static-module --no-verify --no-create --no-convert -w commonjs -o generated/proto.js proto/*.proto",
+    "generate": "rm -rf generated && mkdir generated && pbjs -t static-module --no-verify --no-create --no-convert -w commonjs -o generated/protobuf.js proto/*.proto",
     "tsc": "npm run generate && rm -rf dist && tsc && cp -rf generated ./dist/generated",
     "lint": "tslint src/*.ts src/**/*.ts -t verbose",
     "lint:fix": "npm run lint -- --fix"
