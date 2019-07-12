@@ -1,0 +1,38 @@
+{
+  "name": "@deepstream/protobuf",
+  "version": "1.0.0-rc.1",
+  "description": "The protobuf protocol wrapper used by deepstream.io",
+  "scripts": {
+    "generate": "rm -rf generated && mkdir generated && pbjs -t static-module --no-verify --no-create --no-convert -w commonjs -o generated/proto.js proto/*.proto",
+    "tsc": "npm run generate && rm -rf dist && tsc && cp -rf generated ./dist/generated",
+    "lint": "tslint src/*.ts src/**/*.ts -t verbose",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepstreamIO/deepstream.io-protobuf-js.git"
+  },
+  "keywords": [
+    "deepstream.io",
+    "protobuf",
+    "protocol",
+    "binary"
+  ],
+  "devDependencies": {
+    "@types/node": "^8.0.53",
+    "source-map-support": "^0.5.0",
+    "ts-loader": "^3.2.0",
+    "tslint": "^5.8.0",
+    "typescript": "^3.2.2"
+  },
+  "author": "deepstreamHub GmbH",
+  "bugs": {
+    "url": "https://github.com/deepstreamIO/deepstream.io-protobuf-js/issues"
+  },
+  "homepage": "https://github.com/deepstreamIO/deepstream.io-protobuf-js#readme",
+  "dependencies": {
+    "protobufjs": "^6.8.8",
+    "ts-node": "^8.0.3",
+    "upgrade": "^1.1.0"
+  }
+}

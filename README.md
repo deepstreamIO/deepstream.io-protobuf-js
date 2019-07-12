@@ -1,2 +1,3 @@
-# deepstream.io-protobuf-js
-The JS builder / parser for deepstream.io / node and JS runtimes
+# urp-js
+
+Javascript implementation of the binary protocol for URP, the universal realtime protocol.
