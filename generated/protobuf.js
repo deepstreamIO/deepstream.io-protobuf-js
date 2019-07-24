@@ -2329,7 +2329,7 @@ $root.RpcMessage = (function() {
      * @property {Array.<string>|null} [names] RpcMessage names
      * @property {string|null} [name] RpcMessage name
      * @property {string|null} [reason] RpcMessage reason
-     * @property {number|null} [originalAction] RpcMessage originalAction
+     * @property {RPC_ACTION|null} [originalAction] RpcMessage originalAction
      */
 
     /**
@@ -2414,7 +2414,7 @@ $root.RpcMessage = (function() {
 
     /**
      * RpcMessage originalAction.
-     * @member {number} originalAction
+     * @member {RPC_ACTION} originalAction
      * @memberof RpcMessage
      * @instance
      */

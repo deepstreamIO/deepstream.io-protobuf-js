@@ -2,6 +2,7 @@ import { TopicMessage } from './protobuf-map'
 import { ParseResult } from '../types/messages'
 // @ts-ignore
 import { Message } from '../generated/protobuf'
+import { PARSER_ACTION, TOPIC } from '../types/all'
 
 export interface RawMessage {
   fin: boolean
@@ -14,8 +15,12 @@ export interface RawMessage {
 
 export function parse (data: Uint8Array): Array<ParseResult> {
   const msg = Message.decodeDelimited(data)
-  const message = TopicMessage[msg.topic].decode(msg.message, msg.message.length)
-  return [{ topic: msg.topic, ...message }]
+  try {
+    const message = TopicMessage[msg.topic].decode(msg.message, msg.message.length)
+    return [{ topic: msg.topic, ...message }]
+  } catch (e) {
+    return [{ topic: TOPIC.PARSER, action: PARSER_ACTION.ERROR }]
+  }
 }
 
 export function parseData (message: any): true | Error {
