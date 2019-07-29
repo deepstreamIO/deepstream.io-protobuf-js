@@ -672,7 +672,7 @@ $root.EventMessage = (function() {
      * Properties of an EventMessage.
      * @exports IEventMessage
      * @interface IEventMessage
-     * @property {RPC_ACTION} action EventMessage action
+     * @property {EVENT_ACTION} action EventMessage action
      * @property {string|null} [data] EventMessage data
      * @property {string|null} [correlationId] EventMessage correlationId
      * @property {boolean|null} [isError] EventMessage isError
@@ -702,7 +702,7 @@ $root.EventMessage = (function() {
 
     /**
      * EventMessage action.
-     * @member {RPC_ACTION} action
+     * @member {EVENT_ACTION} action
      * @memberof EventMessage
      * @instance
      */
@@ -1228,7 +1228,7 @@ $root.MonitoringMessage = (function() {
      * Properties of a MonitoringMessage.
      * @exports IMonitoringMessage
      * @interface IMonitoringMessage
-     * @property {RPC_ACTION} action MonitoringMessage action
+     * @property {MONITORING_ACTION} action MonitoringMessage action
      * @property {string|null} [data] MonitoringMessage data
      * @property {string|null} [correlationId] MonitoringMessage correlationId
      * @property {boolean|null} [isError] MonitoringMessage isError
@@ -1252,11 +1252,11 @@ $root.MonitoringMessage = (function() {
 
     /**
      * MonitoringMessage action.
-     * @member {RPC_ACTION} action
+     * @member {MONITORING_ACTION} action
      * @memberof MonitoringMessage
      * @instance
      */
-    MonitoringMessage.prototype.action = 0;
+    MonitoringMessage.prototype.action = undefined;
 
     /**
      * MonitoringMessage data.
@@ -1967,7 +1967,7 @@ $root.RecordMessage = (function() {
      * Properties of a RecordMessage.
      * @exports IRecordMessage
      * @interface IRecordMessage
-     * @property {RPC_ACTION} action RecordMessage action
+     * @property {RECORD_ACTION} action RecordMessage action
      * @property {string|null} [data] RecordMessage data
      * @property {string|null} [correlationId] RecordMessage correlationId
      * @property {boolean|null} [isError] RecordMessage isError
@@ -2002,7 +2002,7 @@ $root.RecordMessage = (function() {
 
     /**
      * RecordMessage action.
-     * @member {RPC_ACTION} action
+     * @member {RECORD_ACTION} action
      * @memberof RecordMessage
      * @instance
      */
