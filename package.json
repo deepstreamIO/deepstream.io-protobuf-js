@@ -1,6 +1,6 @@
 {
   "name": "@deepstream/protobuf",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0",
   "description": "The protobuf protocol wrapper used by deepstream.io",
   "scripts": {
     "generate": "rm -rf generated && mkdir generated && pbjs -t static-module --no-verify --no-create --no-convert -w commonjs -o generated/protobuf.js proto/*.proto",
