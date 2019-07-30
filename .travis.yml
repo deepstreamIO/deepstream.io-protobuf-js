@@ -1,19 +1,22 @@
-sudo: true
+sudo: false
 language: node_js
 
-compiler:
-  - gcc
-  - clang
-
 node_js:
+  - "12"
+  - "10"
   - "8"
-  - "6.11"
 
 script:
   - npm run lint;
-  - npm run test:coverage
 
-after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+deploy:
+- provider: npm
+  email: "info@deepstream.io"
+  api_key: ${NPM_TOKEN}
+  skip_cleanup: true
+  on:
+    tags: true
+    node_js: '10'
 
 notifications:
   email: false
