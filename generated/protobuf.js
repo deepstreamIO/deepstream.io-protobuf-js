@@ -9,194 +9,182 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-$root.deepstream = (function() {
+/**
+ * AUTH_ACTION enum.
+ * @exports AUTH_ACTION
+ * @enum {string}
+ * @property {number} AUTH_UNKNOWN=0 AUTH_UNKNOWN value
+ * @property {number} AUTH_ERROR=1 AUTH_ERROR value
+ * @property {number} AUTH_REQUEST=2 AUTH_REQUEST value
+ * @property {number} AUTH_AUTH_SUCCESSFUL=3 AUTH_AUTH_SUCCESSFUL value
+ * @property {number} AUTH_AUTH_UNSUCCESSFUL=4 AUTH_AUTH_UNSUCCESSFUL value
+ * @property {number} AUTH_TOO_MANY_AUTH_ATTEMPTS=100 AUTH_TOO_MANY_AUTH_ATTEMPTS value
+ * @property {number} AUTH_INVALID_MESSAGE=101 AUTH_INVALID_MESSAGE value
+ * @property {number} AUTH_INVALID_MESSAGE_DATA=102 AUTH_INVALID_MESSAGE_DATA value
+ */
+$root.AUTH_ACTION = (function() {
+    var valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "AUTH_UNKNOWN"] = 0;
+    values[valuesById[1] = "AUTH_ERROR"] = 1;
+    values[valuesById[2] = "AUTH_REQUEST"] = 2;
+    values[valuesById[3] = "AUTH_AUTH_SUCCESSFUL"] = 3;
+    values[valuesById[4] = "AUTH_AUTH_UNSUCCESSFUL"] = 4;
+    values[valuesById[100] = "AUTH_TOO_MANY_AUTH_ATTEMPTS"] = 100;
+    values[valuesById[101] = "AUTH_INVALID_MESSAGE"] = 101;
+    values[valuesById[102] = "AUTH_INVALID_MESSAGE_DATA"] = 102;
+    return values;
+})();
+
+$root.AuthMessage = (function() {
 
     /**
-     * Namespace deepstream.
-     * @exports deepstream
-     * @namespace
+     * Properties of an AuthMessage.
+     * @exports IAuthMessage
+     * @interface IAuthMessage
+     * @property {AUTH_ACTION|null} [action] AuthMessage action
+     * @property {string|null} [data] AuthMessage data
+     * @property {boolean|null} [isError] AuthMessage isError
+     * @property {boolean|null} [isAck] AuthMessage isAck
      */
-    var deepstream = {};
 
     /**
-     * AUTH_ACTION enum.
-     * @name deepstream.AUTH_ACTION
-     * @enum {string}
-     * @property {number} AUTH_UNKNOWN=0 AUTH_UNKNOWN value
-     * @property {number} AUTH_ERROR=1 AUTH_ERROR value
-     * @property {number} AUTH_REQUEST=2 AUTH_REQUEST value
-     * @property {number} AUTH_AUTH_SUCCESSFUL=3 AUTH_AUTH_SUCCESSFUL value
-     * @property {number} AUTH_AUTH_UNSUCCESSFUL=4 AUTH_AUTH_UNSUCCESSFUL value
-     * @property {number} AUTH_TOO_MANY_AUTH_ATTEMPTS=100 AUTH_TOO_MANY_AUTH_ATTEMPTS value
-     * @property {number} AUTH_INVALID_MESSAGE=101 AUTH_INVALID_MESSAGE value
-     * @property {number} AUTH_INVALID_MESSAGE_DATA=102 AUTH_INVALID_MESSAGE_DATA value
+     * Constructs a new AuthMessage.
+     * @exports AuthMessage
+     * @classdesc Represents an AuthMessage.
+     * @implements IAuthMessage
+     * @constructor
+     * @param {IAuthMessage=} [properties] Properties to set
      */
-    deepstream.AUTH_ACTION = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "AUTH_UNKNOWN"] = 0;
-        values[valuesById[1] = "AUTH_ERROR"] = 1;
-        values[valuesById[2] = "AUTH_REQUEST"] = 2;
-        values[valuesById[3] = "AUTH_AUTH_SUCCESSFUL"] = 3;
-        values[valuesById[4] = "AUTH_AUTH_UNSUCCESSFUL"] = 4;
-        values[valuesById[100] = "AUTH_TOO_MANY_AUTH_ATTEMPTS"] = 100;
-        values[valuesById[101] = "AUTH_INVALID_MESSAGE"] = 101;
-        values[valuesById[102] = "AUTH_INVALID_MESSAGE_DATA"] = 102;
-        return values;
-    })();
+    function AuthMessage(properties) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
 
-    deepstream.AuthMessage = (function() {
+    /**
+     * AuthMessage action.
+     * @member {AUTH_ACTION} action
+     * @memberof AuthMessage
+     * @instance
+     */
+    AuthMessage.prototype.action = 0;
 
-        /**
-         * Properties of an AuthMessage.
-         * @memberof deepstream
-         * @interface IAuthMessage
-         * @property {deepstream.AUTH_ACTION|null} [action] AuthMessage action
-         * @property {string|null} [data] AuthMessage data
-         * @property {boolean|null} [isError] AuthMessage isError
-         * @property {boolean|null} [isAck] AuthMessage isAck
-         */
+    /**
+     * AuthMessage data.
+     * @member {string} data
+     * @memberof AuthMessage
+     * @instance
+     */
+    AuthMessage.prototype.data = "";
 
-        /**
-         * Constructs a new AuthMessage.
-         * @memberof deepstream
-         * @classdesc Represents an AuthMessage.
-         * @implements IAuthMessage
-         * @constructor
-         * @param {deepstream.IAuthMessage=} [properties] Properties to set
-         */
-        function AuthMessage(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
+    /**
+     * AuthMessage isError.
+     * @member {boolean} isError
+     * @memberof AuthMessage
+     * @instance
+     */
+    AuthMessage.prototype.isError = false;
 
-        /**
-         * AuthMessage action.
-         * @member {deepstream.AUTH_ACTION} action
-         * @memberof deepstream.AuthMessage
-         * @instance
-         */
-        AuthMessage.prototype.action = 0;
+    /**
+     * AuthMessage isAck.
+     * @member {boolean} isAck
+     * @memberof AuthMessage
+     * @instance
+     */
+    AuthMessage.prototype.isAck = false;
 
-        /**
-         * AuthMessage data.
-         * @member {string} data
-         * @memberof deepstream.AuthMessage
-         * @instance
-         */
-        AuthMessage.prototype.data = "";
+    /**
+     * Encodes the specified AuthMessage message. Does not implicitly {@link AuthMessage.verify|verify} messages.
+     * @function encode
+     * @memberof AuthMessage
+     * @static
+     * @param {IAuthMessage} message AuthMessage message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    AuthMessage.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.data != null && message.hasOwnProperty("data"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
+        if (message.isError != null && message.hasOwnProperty("isError"))
+            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
+        if (message.isAck != null && message.hasOwnProperty("isAck"))
+            writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
+        return writer;
+    };
 
-        /**
-         * AuthMessage isError.
-         * @member {boolean} isError
-         * @memberof deepstream.AuthMessage
-         * @instance
-         */
-        AuthMessage.prototype.isError = false;
+    /**
+     * Encodes the specified AuthMessage message, length delimited. Does not implicitly {@link AuthMessage.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof AuthMessage
+     * @static
+     * @param {IAuthMessage} message AuthMessage message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    AuthMessage.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
 
-        /**
-         * AuthMessage isAck.
-         * @member {boolean} isAck
-         * @memberof deepstream.AuthMessage
-         * @instance
-         */
-        AuthMessage.prototype.isAck = false;
-
-        /**
-         * Encodes the specified AuthMessage message. Does not implicitly {@link deepstream.AuthMessage.verify|verify} messages.
-         * @function encode
-         * @memberof deepstream.AuthMessage
-         * @static
-         * @param {deepstream.IAuthMessage} message AuthMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        AuthMessage.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.action != null && message.hasOwnProperty("action"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-            if (message.data != null && message.hasOwnProperty("data"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-            if (message.isError != null && message.hasOwnProperty("isError"))
-                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
-            if (message.isAck != null && message.hasOwnProperty("isAck"))
-                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified AuthMessage message, length delimited. Does not implicitly {@link deepstream.AuthMessage.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof deepstream.AuthMessage
-         * @static
-         * @param {deepstream.IAuthMessage} message AuthMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        AuthMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes an AuthMessage message from the specified reader or buffer.
-         * @function decode
-         * @memberof deepstream.AuthMessage
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {deepstream.AuthMessage} AuthMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        AuthMessage.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.deepstream.AuthMessage();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.action = reader.int32();
-                    break;
-                case 2:
-                    message.data = reader.string();
-                    break;
-                case 3:
-                    message.isError = reader.bool();
-                    break;
-                case 4:
-                    message.isAck = reader.bool();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
+    /**
+     * Decodes an AuthMessage message from the specified reader or buffer.
+     * @function decode
+     * @memberof AuthMessage
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {AuthMessage} AuthMessage
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    AuthMessage.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AuthMessage();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.action = reader.int32();
+                break;
+            case 2:
+                message.data = reader.string();
+                break;
+            case 3:
+                message.isError = reader.bool();
+                break;
+            case 4:
+                message.isAck = reader.bool();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
             }
-            return message;
-        };
+        }
+        return message;
+    };
 
-        /**
-         * Decodes an AuthMessage message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof deepstream.AuthMessage
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {deepstream.AuthMessage} AuthMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        AuthMessage.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
+    /**
+     * Decodes an AuthMessage message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof AuthMessage
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {AuthMessage} AuthMessage
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    AuthMessage.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
 
-        return AuthMessage;
-    })();
-
-    return deepstream;
+    return AuthMessage;
 })();
 
 /**
