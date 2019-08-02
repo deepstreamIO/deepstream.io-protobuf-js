@@ -9,198 +9,209 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-/**
- * AUTH_ACTION enum.
- * @exports AUTH_ACTION
- * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} REQUEST=2 REQUEST value
- * @property {number} AUTH_SUCCESSFUL=3 AUTH_SUCCESSFUL value
- * @property {number} AUTH_UNSUCCESSFUL=4 AUTH_UNSUCCESSFUL value
- * @property {number} TOO_MANY_AUTH_ATTEMPTS=100 TOO_MANY_AUTH_ATTEMPTS value
- * @property {number} INVALID_MESSAGE=101 INVALID_MESSAGE value
- * @property {number} INVALID_MESSAGE_DATA=102 INVALID_MESSAGE_DATA value
- */
-$root.AUTH_ACTION = (function() {
-    var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "REQUEST"] = 2;
-    values[valuesById[3] = "AUTH_SUCCESSFUL"] = 3;
-    values[valuesById[4] = "AUTH_UNSUCCESSFUL"] = 4;
-    values[valuesById[100] = "TOO_MANY_AUTH_ATTEMPTS"] = 100;
-    values[valuesById[101] = "INVALID_MESSAGE"] = 101;
-    values[valuesById[102] = "INVALID_MESSAGE_DATA"] = 102;
-    return values;
-})();
-
-$root.AuthMessage = (function() {
+$root.deepstream = (function() {
 
     /**
-     * Properties of an AuthMessage.
-     * @exports IAuthMessage
-     * @interface IAuthMessage
-     * @property {AUTH_ACTION} action AuthMessage action
-     * @property {string|null} [data] AuthMessage data
-     * @property {boolean|null} [isError] AuthMessage isError
-     * @property {boolean|null} [isAck] AuthMessage isAck
+     * Namespace deepstream.
+     * @exports deepstream
+     * @namespace
      */
+    var deepstream = {};
 
     /**
-     * Constructs a new AuthMessage.
-     * @exports AuthMessage
-     * @classdesc Represents an AuthMessage.
-     * @implements IAuthMessage
-     * @constructor
-     * @param {IAuthMessage=} [properties] Properties to set
+     * AUTH_ACTION enum.
+     * @name deepstream.AUTH_ACTION
+     * @enum {string}
+     * @property {number} AUTH_UNKNOWN=0 AUTH_UNKNOWN value
+     * @property {number} AUTH_ERROR=1 AUTH_ERROR value
+     * @property {number} AUTH_REQUEST=2 AUTH_REQUEST value
+     * @property {number} AUTH_AUTH_SUCCESSFUL=3 AUTH_AUTH_SUCCESSFUL value
+     * @property {number} AUTH_AUTH_UNSUCCESSFUL=4 AUTH_AUTH_UNSUCCESSFUL value
+     * @property {number} AUTH_TOO_MANY_AUTH_ATTEMPTS=100 AUTH_TOO_MANY_AUTH_ATTEMPTS value
+     * @property {number} AUTH_INVALID_MESSAGE=101 AUTH_INVALID_MESSAGE value
+     * @property {number} AUTH_INVALID_MESSAGE_DATA=102 AUTH_INVALID_MESSAGE_DATA value
      */
-    function AuthMessage(properties) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
+    deepstream.AUTH_ACTION = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "AUTH_UNKNOWN"] = 0;
+        values[valuesById[1] = "AUTH_ERROR"] = 1;
+        values[valuesById[2] = "AUTH_REQUEST"] = 2;
+        values[valuesById[3] = "AUTH_AUTH_SUCCESSFUL"] = 3;
+        values[valuesById[4] = "AUTH_AUTH_UNSUCCESSFUL"] = 4;
+        values[valuesById[100] = "AUTH_TOO_MANY_AUTH_ATTEMPTS"] = 100;
+        values[valuesById[101] = "AUTH_INVALID_MESSAGE"] = 101;
+        values[valuesById[102] = "AUTH_INVALID_MESSAGE_DATA"] = 102;
+        return values;
+    })();
 
-    /**
-     * AuthMessage action.
-     * @member {AUTH_ACTION} action
-     * @memberof AuthMessage
-     * @instance
-     */
-    AuthMessage.prototype.action = 0;
+    deepstream.AuthMessage = (function() {
 
-    /**
-     * AuthMessage data.
-     * @member {string} data
-     * @memberof AuthMessage
-     * @instance
-     */
-    AuthMessage.prototype.data = "";
+        /**
+         * Properties of an AuthMessage.
+         * @memberof deepstream
+         * @interface IAuthMessage
+         * @property {deepstream.AUTH_ACTION|null} [action] AuthMessage action
+         * @property {string|null} [data] AuthMessage data
+         * @property {boolean|null} [isError] AuthMessage isError
+         * @property {boolean|null} [isAck] AuthMessage isAck
+         */
 
-    /**
-     * AuthMessage isError.
-     * @member {boolean} isError
-     * @memberof AuthMessage
-     * @instance
-     */
-    AuthMessage.prototype.isError = false;
-
-    /**
-     * AuthMessage isAck.
-     * @member {boolean} isAck
-     * @memberof AuthMessage
-     * @instance
-     */
-    AuthMessage.prototype.isAck = false;
-
-    /**
-     * Encodes the specified AuthMessage message. Does not implicitly {@link AuthMessage.verify|verify} messages.
-     * @function encode
-     * @memberof AuthMessage
-     * @static
-     * @param {IAuthMessage} message AuthMessage message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    AuthMessage.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.isError != null && message.hasOwnProperty("isError"))
-            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
-            writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified AuthMessage message, length delimited. Does not implicitly {@link AuthMessage.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof AuthMessage
-     * @static
-     * @param {IAuthMessage} message AuthMessage message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    AuthMessage.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes an AuthMessage message from the specified reader or buffer.
-     * @function decode
-     * @memberof AuthMessage
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {AuthMessage} AuthMessage
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    AuthMessage.decode = function decode(reader, length) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AuthMessage();
-        while (reader.pos < end) {
-            var tag = reader.uint32();
-            switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.isError = reader.bool();
-                break;
-            case 4:
-                message.isAck = reader.bool();
-                break;
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
+        /**
+         * Constructs a new AuthMessage.
+         * @memberof deepstream
+         * @classdesc Represents an AuthMessage.
+         * @implements IAuthMessage
+         * @constructor
+         * @param {deepstream.IAuthMessage=} [properties] Properties to set
+         */
+        function AuthMessage(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
-        return message;
-    };
 
-    /**
-     * Decodes an AuthMessage message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof AuthMessage
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {AuthMessage} AuthMessage
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    AuthMessage.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
+        /**
+         * AuthMessage action.
+         * @member {deepstream.AUTH_ACTION} action
+         * @memberof deepstream.AuthMessage
+         * @instance
+         */
+        AuthMessage.prototype.action = 0;
 
-    return AuthMessage;
+        /**
+         * AuthMessage data.
+         * @member {string} data
+         * @memberof deepstream.AuthMessage
+         * @instance
+         */
+        AuthMessage.prototype.data = "";
+
+        /**
+         * AuthMessage isError.
+         * @member {boolean} isError
+         * @memberof deepstream.AuthMessage
+         * @instance
+         */
+        AuthMessage.prototype.isError = false;
+
+        /**
+         * AuthMessage isAck.
+         * @member {boolean} isAck
+         * @memberof deepstream.AuthMessage
+         * @instance
+         */
+        AuthMessage.prototype.isAck = false;
+
+        /**
+         * Encodes the specified AuthMessage message. Does not implicitly {@link deepstream.AuthMessage.verify|verify} messages.
+         * @function encode
+         * @memberof deepstream.AuthMessage
+         * @static
+         * @param {deepstream.IAuthMessage} message AuthMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthMessage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.action != null && message.hasOwnProperty("action"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+            if (message.data != null && message.hasOwnProperty("data"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
+            if (message.isError != null && message.hasOwnProperty("isError"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
+            if (message.isAck != null && message.hasOwnProperty("isAck"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AuthMessage message, length delimited. Does not implicitly {@link deepstream.AuthMessage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof deepstream.AuthMessage
+         * @static
+         * @param {deepstream.IAuthMessage} message AuthMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthMessage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AuthMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof deepstream.AuthMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {deepstream.AuthMessage} AuthMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthMessage.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.deepstream.AuthMessage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.action = reader.int32();
+                    break;
+                case 2:
+                    message.data = reader.string();
+                    break;
+                case 3:
+                    message.isError = reader.bool();
+                    break;
+                case 4:
+                    message.isAck = reader.bool();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AuthMessage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof deepstream.AuthMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {deepstream.AuthMessage} AuthMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthMessage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        return AuthMessage;
+    })();
+
+    return deepstream;
 })();
 
 /**
  * CLUSTER_ACTION enum.
  * @exports CLUSTER_ACTION
  * @enum {string}
- * @property {number} UKNOWN=0 UKNOWN value
- * @property {number} REMOVE=1 REMOVE value
- * @property {number} STATUS=2 STATUS value
+ * @property {number} CLUSTER_UNKNOWN=0 CLUSTER_UNKNOWN value
+ * @property {number} CLUSTER_REMOVE=1 CLUSTER_REMOVE value
+ * @property {number} CLUSTER_STATUS=2 CLUSTER_STATUS value
  */
 $root.CLUSTER_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UKNOWN"] = 0;
-    values[valuesById[1] = "REMOVE"] = 1;
-    values[valuesById[2] = "STATUS"] = 2;
+    values[valuesById[0] = "CLUSTER_UNKNOWN"] = 0;
+    values[valuesById[1] = "CLUSTER_REMOVE"] = 1;
+    values[valuesById[2] = "CLUSTER_STATUS"] = 2;
     return values;
 })();
 
@@ -210,7 +221,7 @@ $root.ClusterMessage = (function() {
      * Properties of a ClusterMessage.
      * @exports IClusterMessage
      * @interface IClusterMessage
-     * @property {CLUSTER_ACTION} action ClusterMessage action
+     * @property {CLUSTER_ACTION|null} [action] ClusterMessage action
      * @property {string|null} [data] ClusterMessage data
      * @property {boolean|null} [isError] ClusterMessage isError
      * @property {boolean|null} [isAck] ClusterMessage isAck
@@ -302,7 +313,8 @@ $root.ClusterMessage = (function() {
     ClusterMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.isError != null && message.hasOwnProperty("isError"))
@@ -375,8 +387,6 @@ $root.ClusterMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -403,33 +413,33 @@ $root.ClusterMessage = (function() {
  * CONNECTION_ACTION enum.
  * @exports CONNECTION_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} PING=2 PING value
- * @property {number} PONG=3 PONG value
- * @property {number} ACCEPT=4 ACCEPT value
- * @property {number} CHALLENGE=5 CHALLENGE value
- * @property {number} REJECT=6 REJECT value
- * @property {number} REDIRECT=7 REDIRECT value
- * @property {number} CLOSING=8 CLOSING value
- * @property {number} CLOSED=9 CLOSED value
- * @property {number} AUTHENTICATION_TIMEOUT=100 AUTHENTICATION_TIMEOUT value
- * @property {number} INVALID_MESSAGE=101 INVALID_MESSAGE value
+ * @property {number} CONNECTION_UNKNOWN=0 CONNECTION_UNKNOWN value
+ * @property {number} CONNECTION_ERROR=1 CONNECTION_ERROR value
+ * @property {number} CONNECTION_PING=2 CONNECTION_PING value
+ * @property {number} CONNECTION_PONG=3 CONNECTION_PONG value
+ * @property {number} CONNECTION_ACCEPT=4 CONNECTION_ACCEPT value
+ * @property {number} CONNECTION_CHALLENGE=5 CONNECTION_CHALLENGE value
+ * @property {number} CONNECTION_REJECT=6 CONNECTION_REJECT value
+ * @property {number} CONNECTION_REDIRECT=7 CONNECTION_REDIRECT value
+ * @property {number} CONNECTION_CLOSING=8 CONNECTION_CLOSING value
+ * @property {number} CONNECTION_CLOSED=9 CONNECTION_CLOSED value
+ * @property {number} CONNECTION_AUTHENTICATION_TIMEOUT=100 CONNECTION_AUTHENTICATION_TIMEOUT value
+ * @property {number} CONNECTION_INVALID_MESSAGE=101 CONNECTION_INVALID_MESSAGE value
  */
 $root.CONNECTION_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "PING"] = 2;
-    values[valuesById[3] = "PONG"] = 3;
-    values[valuesById[4] = "ACCEPT"] = 4;
-    values[valuesById[5] = "CHALLENGE"] = 5;
-    values[valuesById[6] = "REJECT"] = 6;
-    values[valuesById[7] = "REDIRECT"] = 7;
-    values[valuesById[8] = "CLOSING"] = 8;
-    values[valuesById[9] = "CLOSED"] = 9;
-    values[valuesById[100] = "AUTHENTICATION_TIMEOUT"] = 100;
-    values[valuesById[101] = "INVALID_MESSAGE"] = 101;
+    values[valuesById[0] = "CONNECTION_UNKNOWN"] = 0;
+    values[valuesById[1] = "CONNECTION_ERROR"] = 1;
+    values[valuesById[2] = "CONNECTION_PING"] = 2;
+    values[valuesById[3] = "CONNECTION_PONG"] = 3;
+    values[valuesById[4] = "CONNECTION_ACCEPT"] = 4;
+    values[valuesById[5] = "CONNECTION_CHALLENGE"] = 5;
+    values[valuesById[6] = "CONNECTION_REJECT"] = 6;
+    values[valuesById[7] = "CONNECTION_REDIRECT"] = 7;
+    values[valuesById[8] = "CONNECTION_CLOSING"] = 8;
+    values[valuesById[9] = "CONNECTION_CLOSED"] = 9;
+    values[valuesById[100] = "CONNECTION_AUTHENTICATION_TIMEOUT"] = 100;
+    values[valuesById[101] = "CONNECTION_INVALID_MESSAGE"] = 101;
     return values;
 })();
 
@@ -439,7 +449,7 @@ $root.ConnectionMessage = (function() {
      * Properties of a ConnectionMessage.
      * @exports IConnectionMessage
      * @interface IConnectionMessage
-     * @property {CONNECTION_ACTION} action ConnectionMessage action
+     * @property {CONNECTION_ACTION|null} [action] ConnectionMessage action
      * @property {string|null} [data] ConnectionMessage data
      * @property {boolean|null} [isError] ConnectionMessage isError
      * @property {boolean|null} [isAck] ConnectionMessage isAck
@@ -522,7 +532,8 @@ $root.ConnectionMessage = (function() {
     ConnectionMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.isError != null && message.hasOwnProperty("isError"))
@@ -590,8 +601,6 @@ $root.ConnectionMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -618,51 +627,51 @@ $root.ConnectionMessage = (function() {
  * EVENT_ACTION enum.
  * @exports EVENT_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} EMIT=2 EMIT value
- * @property {number} SUBSCRIBE=3 SUBSCRIBE value
- * @property {number} UNSUBSCRIBE=4 UNSUBSCRIBE value
- * @property {number} LISTEN=5 LISTEN value
- * @property {number} UNLISTEN=6 UNLISTEN value
- * @property {number} LISTEN_ACCEPT=7 LISTEN_ACCEPT value
- * @property {number} LISTEN_REJECT=8 LISTEN_REJECT value
- * @property {number} SUBSCRIPTION_HAS_PROVIDER=9 SUBSCRIPTION_HAS_PROVIDER value
- * @property {number} SUBSCRIPTION_HAS_NO_PROVIDER=10 SUBSCRIPTION_HAS_NO_PROVIDER value
- * @property {number} SUBSCRIPTION_FOR_PATTERN_FOUND=11 SUBSCRIPTION_FOR_PATTERN_FOUND value
- * @property {number} SUBSCRIPTION_FOR_PATTERN_REMOVED=12 SUBSCRIPTION_FOR_PATTERN_REMOVED value
- * @property {number} INVALID_LISTEN_REGEX=100 INVALID_LISTEN_REGEX value
- * @property {number} LISTEN_RESPONSE_TIMEOUT=101 LISTEN_RESPONSE_TIMEOUT value
- * @property {number} LISTEN_UNSUCCESSFUL=102 LISTEN_UNSUCCESSFUL value
- * @property {number} MESSAGE_PERMISSION_ERROR=103 MESSAGE_PERMISSION_ERROR value
- * @property {number} MESSAGE_DENIED=104 MESSAGE_DENIED value
- * @property {number} INVALID_MESSAGE_DATA=105 INVALID_MESSAGE_DATA value
- * @property {number} MULTIPLE_SUBSCRIPTIONS=106 MULTIPLE_SUBSCRIPTIONS value
- * @property {number} NOT_SUBSCRIBED=107 NOT_SUBSCRIBED value
+ * @property {number} EVENT_UNKNOWN=0 EVENT_UNKNOWN value
+ * @property {number} EVENT_ERROR=1 EVENT_ERROR value
+ * @property {number} EVENT_EMIT=2 EVENT_EMIT value
+ * @property {number} EVENT_SUBSCRIBE=3 EVENT_SUBSCRIBE value
+ * @property {number} EVENT_UNSUBSCRIBE=4 EVENT_UNSUBSCRIBE value
+ * @property {number} EVENT_LISTEN=5 EVENT_LISTEN value
+ * @property {number} EVENT_UNLISTEN=6 EVENT_UNLISTEN value
+ * @property {number} EVENT_LISTEN_ACCEPT=7 EVENT_LISTEN_ACCEPT value
+ * @property {number} EVENT_LISTEN_REJECT=8 EVENT_LISTEN_REJECT value
+ * @property {number} EVENT_SUBSCRIPTION_HAS_PROVIDER=9 EVENT_SUBSCRIPTION_HAS_PROVIDER value
+ * @property {number} EVENT_SUBSCRIPTION_HAS_NO_PROVIDER=10 EVENT_SUBSCRIPTION_HAS_NO_PROVIDER value
+ * @property {number} EVENT_SUBSCRIPTION_FOR_PATTERN_FOUND=11 EVENT_SUBSCRIPTION_FOR_PATTERN_FOUND value
+ * @property {number} EVENT_SUBSCRIPTION_FOR_PATTERN_REMOVED=12 EVENT_SUBSCRIPTION_FOR_PATTERN_REMOVED value
+ * @property {number} EVENT_INVALID_LISTEN_REGEX=100 EVENT_INVALID_LISTEN_REGEX value
+ * @property {number} EVENT_LISTEN_RESPONSE_TIMEOUT=101 EVENT_LISTEN_RESPONSE_TIMEOUT value
+ * @property {number} EVENT_LISTEN_UNSUCCESSFUL=102 EVENT_LISTEN_UNSUCCESSFUL value
+ * @property {number} EVENT_MESSAGE_PERMISSION_ERROR=103 EVENT_MESSAGE_PERMISSION_ERROR value
+ * @property {number} EVENT_MESSAGE_DENIED=104 EVENT_MESSAGE_DENIED value
+ * @property {number} EVENT_INVALID_MESSAGE_DATA=105 EVENT_INVALID_MESSAGE_DATA value
+ * @property {number} EVENT_MULTIPLE_SUBSCRIPTIONS=106 EVENT_MULTIPLE_SUBSCRIPTIONS value
+ * @property {number} EVENT_NOT_SUBSCRIBED=107 EVENT_NOT_SUBSCRIBED value
  */
 $root.EVENT_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "EMIT"] = 2;
-    values[valuesById[3] = "SUBSCRIBE"] = 3;
-    values[valuesById[4] = "UNSUBSCRIBE"] = 4;
-    values[valuesById[5] = "LISTEN"] = 5;
-    values[valuesById[6] = "UNLISTEN"] = 6;
-    values[valuesById[7] = "LISTEN_ACCEPT"] = 7;
-    values[valuesById[8] = "LISTEN_REJECT"] = 8;
-    values[valuesById[9] = "SUBSCRIPTION_HAS_PROVIDER"] = 9;
-    values[valuesById[10] = "SUBSCRIPTION_HAS_NO_PROVIDER"] = 10;
-    values[valuesById[11] = "SUBSCRIPTION_FOR_PATTERN_FOUND"] = 11;
-    values[valuesById[12] = "SUBSCRIPTION_FOR_PATTERN_REMOVED"] = 12;
-    values[valuesById[100] = "INVALID_LISTEN_REGEX"] = 100;
-    values[valuesById[101] = "LISTEN_RESPONSE_TIMEOUT"] = 101;
-    values[valuesById[102] = "LISTEN_UNSUCCESSFUL"] = 102;
-    values[valuesById[103] = "MESSAGE_PERMISSION_ERROR"] = 103;
-    values[valuesById[104] = "MESSAGE_DENIED"] = 104;
-    values[valuesById[105] = "INVALID_MESSAGE_DATA"] = 105;
-    values[valuesById[106] = "MULTIPLE_SUBSCRIPTIONS"] = 106;
-    values[valuesById[107] = "NOT_SUBSCRIBED"] = 107;
+    values[valuesById[0] = "EVENT_UNKNOWN"] = 0;
+    values[valuesById[1] = "EVENT_ERROR"] = 1;
+    values[valuesById[2] = "EVENT_EMIT"] = 2;
+    values[valuesById[3] = "EVENT_SUBSCRIBE"] = 3;
+    values[valuesById[4] = "EVENT_UNSUBSCRIBE"] = 4;
+    values[valuesById[5] = "EVENT_LISTEN"] = 5;
+    values[valuesById[6] = "EVENT_UNLISTEN"] = 6;
+    values[valuesById[7] = "EVENT_LISTEN_ACCEPT"] = 7;
+    values[valuesById[8] = "EVENT_LISTEN_REJECT"] = 8;
+    values[valuesById[9] = "EVENT_SUBSCRIPTION_HAS_PROVIDER"] = 9;
+    values[valuesById[10] = "EVENT_SUBSCRIPTION_HAS_NO_PROVIDER"] = 10;
+    values[valuesById[11] = "EVENT_SUBSCRIPTION_FOR_PATTERN_FOUND"] = 11;
+    values[valuesById[12] = "EVENT_SUBSCRIPTION_FOR_PATTERN_REMOVED"] = 12;
+    values[valuesById[100] = "EVENT_INVALID_LISTEN_REGEX"] = 100;
+    values[valuesById[101] = "EVENT_LISTEN_RESPONSE_TIMEOUT"] = 101;
+    values[valuesById[102] = "EVENT_LISTEN_UNSUCCESSFUL"] = 102;
+    values[valuesById[103] = "EVENT_MESSAGE_PERMISSION_ERROR"] = 103;
+    values[valuesById[104] = "EVENT_MESSAGE_DENIED"] = 104;
+    values[valuesById[105] = "EVENT_INVALID_MESSAGE_DATA"] = 105;
+    values[valuesById[106] = "EVENT_MULTIPLE_SUBSCRIPTIONS"] = 106;
+    values[valuesById[107] = "EVENT_NOT_SUBSCRIBED"] = 107;
     return values;
 })();
 
@@ -672,7 +681,7 @@ $root.EventMessage = (function() {
      * Properties of an EventMessage.
      * @exports IEventMessage
      * @interface IEventMessage
-     * @property {EVENT_ACTION} action EventMessage action
+     * @property {EVENT_ACTION|null} [action] EventMessage action
      * @property {string|null} [data] EventMessage data
      * @property {string|null} [correlationId] EventMessage correlationId
      * @property {boolean|null} [isError] EventMessage isError
@@ -792,7 +801,8 @@ $root.EventMessage = (function() {
     EventMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.correlationId != null && message.hasOwnProperty("correlationId"))
@@ -883,8 +893,6 @@ $root.EventMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -1071,19 +1079,19 @@ $root.Message = (function() {
  * LOCK_ACTION enum.
  * @exports LOCK_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} REQUEST=2 REQUEST value
- * @property {number} RESPONSE=3 RESPONSE value
- * @property {number} RELEASE=4 RELEASE value
+ * @property {number} LOCK_UNKNOWN=0 LOCK_UNKNOWN value
+ * @property {number} LOCK_ERROR=1 LOCK_ERROR value
+ * @property {number} LOCK_REQUEST=2 LOCK_REQUEST value
+ * @property {number} LOCK_RESPONSE=3 LOCK_RESPONSE value
+ * @property {number} LOCK_RELEASE=4 LOCK_RELEASE value
  */
 $root.LOCK_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "REQUEST"] = 2;
-    values[valuesById[3] = "RESPONSE"] = 3;
-    values[valuesById[4] = "RELEASE"] = 4;
+    values[valuesById[0] = "LOCK_UNKNOWN"] = 0;
+    values[valuesById[1] = "LOCK_ERROR"] = 1;
+    values[valuesById[2] = "LOCK_REQUEST"] = 2;
+    values[valuesById[3] = "LOCK_RESPONSE"] = 3;
+    values[valuesById[4] = "LOCK_RELEASE"] = 4;
     return values;
 })();
 
@@ -1093,7 +1101,7 @@ $root.LockMessage = (function() {
      * Properties of a LockMessage.
      * @exports ILockMessage
      * @interface ILockMessage
-     * @property {LOCK_ACTION} action LockMessage action
+     * @property {LOCK_ACTION|null} [action] LockMessage action
      * @property {boolean|null} [locked] LockMessage locked
      */
 
@@ -1140,7 +1148,8 @@ $root.LockMessage = (function() {
     LockMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.locked != null && message.hasOwnProperty("locked"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.locked);
         return writer;
@@ -1188,8 +1197,6 @@ $root.LockMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -1216,9 +1223,11 @@ $root.LockMessage = (function() {
  * MONITORING_ACTION enum.
  * @exports MONITORING_ACTION
  * @enum {string}
+ * @property {number} MONITORING_UNKNOWN=0 MONITORING_UNKNOWN value
  */
 $root.MONITORING_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "MONITORING_UNKNOWN"] = 0;
     return values;
 })();
 
@@ -1228,7 +1237,7 @@ $root.MonitoringMessage = (function() {
      * Properties of a MonitoringMessage.
      * @exports IMonitoringMessage
      * @interface IMonitoringMessage
-     * @property {MONITORING_ACTION} action MonitoringMessage action
+     * @property {MONITORING_ACTION|null} [action] MonitoringMessage action
      * @property {string|null} [data] MonitoringMessage data
      * @property {string|null} [correlationId] MonitoringMessage correlationId
      * @property {boolean|null} [isError] MonitoringMessage isError
@@ -1256,7 +1265,7 @@ $root.MonitoringMessage = (function() {
      * @memberof MonitoringMessage
      * @instance
      */
-    MonitoringMessage.prototype.action = undefined;
+    MonitoringMessage.prototype.action = 0;
 
     /**
      * MonitoringMessage data.
@@ -1302,7 +1311,8 @@ $root.MonitoringMessage = (function() {
     MonitoringMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.correlationId != null && message.hasOwnProperty("correlationId"))
@@ -1365,8 +1375,6 @@ $root.MonitoringMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -1393,25 +1401,25 @@ $root.MonitoringMessage = (function() {
  * PARSER_ACTION enum.
  * @exports PARSER_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} UNKNOWN_TOPIC=1 UNKNOWN_TOPIC value
- * @property {number} UNKNOWN_ACTION=2 UNKNOWN_ACTION value
- * @property {number} INVALID_MESSAGE=3 INVALID_MESSAGE value
- * @property {number} MESSAGE_PARSE_ERROR=4 MESSAGE_PARSE_ERROR value
- * @property {number} MAXIMUM_MESSAGE_SIZE_EXCEEDED=5 MAXIMUM_MESSAGE_SIZE_EXCEEDED value
- * @property {number} ERROR=6 ERROR value
- * @property {number} INVALID_META_PARAMS=7 INVALID_META_PARAMS value
+ * @property {number} PARSER_UNKNOWN=0 PARSER_UNKNOWN value
+ * @property {number} PARSER_UNKNOWN_TOPIC=1 PARSER_UNKNOWN_TOPIC value
+ * @property {number} PARSER_UNKNOWN_ACTION=2 PARSER_UNKNOWN_ACTION value
+ * @property {number} PARSER_INVALID_MESSAGE=3 PARSER_INVALID_MESSAGE value
+ * @property {number} PARSER_MESSAGE_PARSE_ERROR=4 PARSER_MESSAGE_PARSE_ERROR value
+ * @property {number} PARSER_MAXIMUM_MESSAGE_SIZE_EXCEEDED=5 PARSER_MAXIMUM_MESSAGE_SIZE_EXCEEDED value
+ * @property {number} PARSER_ERROR=6 PARSER_ERROR value
+ * @property {number} PARSER_INVALID_META_PARAMS=7 PARSER_INVALID_META_PARAMS value
  */
 $root.PARSER_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "UNKNOWN_TOPIC"] = 1;
-    values[valuesById[2] = "UNKNOWN_ACTION"] = 2;
-    values[valuesById[3] = "INVALID_MESSAGE"] = 3;
-    values[valuesById[4] = "MESSAGE_PARSE_ERROR"] = 4;
-    values[valuesById[5] = "MAXIMUM_MESSAGE_SIZE_EXCEEDED"] = 5;
-    values[valuesById[6] = "ERROR"] = 6;
-    values[valuesById[7] = "INVALID_META_PARAMS"] = 7;
+    values[valuesById[0] = "PARSER_UNKNOWN"] = 0;
+    values[valuesById[1] = "PARSER_UNKNOWN_TOPIC"] = 1;
+    values[valuesById[2] = "PARSER_UNKNOWN_ACTION"] = 2;
+    values[valuesById[3] = "PARSER_INVALID_MESSAGE"] = 3;
+    values[valuesById[4] = "PARSER_MESSAGE_PARSE_ERROR"] = 4;
+    values[valuesById[5] = "PARSER_MAXIMUM_MESSAGE_SIZE_EXCEEDED"] = 5;
+    values[valuesById[6] = "PARSER_ERROR"] = 6;
+    values[valuesById[7] = "PARSER_INVALID_META_PARAMS"] = 7;
     return values;
 })();
 
@@ -1421,7 +1429,7 @@ $root.ParserMessage = (function() {
      * Properties of a ParserMessage.
      * @exports IParserMessage
      * @interface IParserMessage
-     * @property {PARSER_ACTION} action ParserMessage action
+     * @property {PARSER_ACTION|null} [action] ParserMessage action
      * @property {string|null} [data] ParserMessage data
      * @property {TOPIC|null} [originalTOPIC] ParserMessage originalTOPIC
      * @property {number|null} [originalAction] ParserMessage originalAction
@@ -1486,7 +1494,8 @@ $root.ParserMessage = (function() {
     ParserMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.originalTOPIC != null && message.hasOwnProperty("originalTOPIC"))
@@ -1544,8 +1553,6 @@ $root.ParserMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -1572,47 +1579,47 @@ $root.ParserMessage = (function() {
  * PRESENCE_ACTION enum.
  * @exports PRESENCE_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} QUERY_ALL=2 QUERY_ALL value
- * @property {number} QUERY_ALL_RESPONSE=3 QUERY_ALL_RESPONSE value
- * @property {number} QUERY=4 QUERY value
- * @property {number} QUERY_RESPONSE=5 QUERY_RESPONSE value
- * @property {number} PRESENCE_JOIN=6 PRESENCE_JOIN value
- * @property {number} PRESENCE_JOIN_ALL=7 PRESENCE_JOIN_ALL value
- * @property {number} PRESENCE_LEAVE=8 PRESENCE_LEAVE value
- * @property {number} PRESENCE_LEAVE_ALL=9 PRESENCE_LEAVE_ALL value
- * @property {number} SUBSCRIBE=10 SUBSCRIBE value
- * @property {number} UNSUBSCRIBE=11 UNSUBSCRIBE value
- * @property {number} SUBSCRIBE_ALL=12 SUBSCRIBE_ALL value
- * @property {number} UNSUBSCRIBE_ALL=13 UNSUBSCRIBE_ALL value
- * @property {number} INVALID_PRESENCE_USERS=100 INVALID_PRESENCE_USERS value
- * @property {number} MESSAGE_PERMISSION_ERROR=101 MESSAGE_PERMISSION_ERROR value
- * @property {number} MESSAGE_DENIED=102 MESSAGE_DENIED value
- * @property {number} MULTIPLE_SUBSCRIPTIONS=103 MULTIPLE_SUBSCRIPTIONS value
- * @property {number} NOT_SUBSCRIBED=104 NOT_SUBSCRIBED value
+ * @property {number} PRESENCE_UNKNOWN=0 PRESENCE_UNKNOWN value
+ * @property {number} PRESENCE_ERROR=1 PRESENCE_ERROR value
+ * @property {number} PRESENCE_QUERY_ALL=2 PRESENCE_QUERY_ALL value
+ * @property {number} PRESENCE_QUERY_ALL_RESPONSE=3 PRESENCE_QUERY_ALL_RESPONSE value
+ * @property {number} PRESENCE_QUERY=4 PRESENCE_QUERY value
+ * @property {number} PRESENCE_QUERY_RESPONSE=5 PRESENCE_QUERY_RESPONSE value
+ * @property {number} PRESENCE_PRESENCE_JOIN=6 PRESENCE_PRESENCE_JOIN value
+ * @property {number} PRESENCE_PRESENCE_JOIN_ALL=7 PRESENCE_PRESENCE_JOIN_ALL value
+ * @property {number} PRESENCE_PRESENCE_LEAVE=8 PRESENCE_PRESENCE_LEAVE value
+ * @property {number} PRESENCE_PRESENCE_LEAVE_ALL=9 PRESENCE_PRESENCE_LEAVE_ALL value
+ * @property {number} PRESENCE_SUBSCRIBE=10 PRESENCE_SUBSCRIBE value
+ * @property {number} PRESENCE_UNSUBSCRIBE=11 PRESENCE_UNSUBSCRIBE value
+ * @property {number} PRESENCE_SUBSCRIBE_ALL=12 PRESENCE_SUBSCRIBE_ALL value
+ * @property {number} PRESENCE_UNSUBSCRIBE_ALL=13 PRESENCE_UNSUBSCRIBE_ALL value
+ * @property {number} PRESENCE_INVALID_PRESENCE_USERS=100 PRESENCE_INVALID_PRESENCE_USERS value
+ * @property {number} PRESENCE_MESSAGE_PERMISSION_ERROR=101 PRESENCE_MESSAGE_PERMISSION_ERROR value
+ * @property {number} PRESENCE_MESSAGE_DENIED=102 PRESENCE_MESSAGE_DENIED value
+ * @property {number} PRESENCE_MULTIPLE_SUBSCRIPTIONS=103 PRESENCE_MULTIPLE_SUBSCRIPTIONS value
+ * @property {number} PRESENCE_NOT_SUBSCRIBED=104 PRESENCE_NOT_SUBSCRIBED value
  */
 $root.PRESENCE_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "QUERY_ALL"] = 2;
-    values[valuesById[3] = "QUERY_ALL_RESPONSE"] = 3;
-    values[valuesById[4] = "QUERY"] = 4;
-    values[valuesById[5] = "QUERY_RESPONSE"] = 5;
-    values[valuesById[6] = "PRESENCE_JOIN"] = 6;
-    values[valuesById[7] = "PRESENCE_JOIN_ALL"] = 7;
-    values[valuesById[8] = "PRESENCE_LEAVE"] = 8;
-    values[valuesById[9] = "PRESENCE_LEAVE_ALL"] = 9;
-    values[valuesById[10] = "SUBSCRIBE"] = 10;
-    values[valuesById[11] = "UNSUBSCRIBE"] = 11;
-    values[valuesById[12] = "SUBSCRIBE_ALL"] = 12;
-    values[valuesById[13] = "UNSUBSCRIBE_ALL"] = 13;
-    values[valuesById[100] = "INVALID_PRESENCE_USERS"] = 100;
-    values[valuesById[101] = "MESSAGE_PERMISSION_ERROR"] = 101;
-    values[valuesById[102] = "MESSAGE_DENIED"] = 102;
-    values[valuesById[103] = "MULTIPLE_SUBSCRIPTIONS"] = 103;
-    values[valuesById[104] = "NOT_SUBSCRIBED"] = 104;
+    values[valuesById[0] = "PRESENCE_UNKNOWN"] = 0;
+    values[valuesById[1] = "PRESENCE_ERROR"] = 1;
+    values[valuesById[2] = "PRESENCE_QUERY_ALL"] = 2;
+    values[valuesById[3] = "PRESENCE_QUERY_ALL_RESPONSE"] = 3;
+    values[valuesById[4] = "PRESENCE_QUERY"] = 4;
+    values[valuesById[5] = "PRESENCE_QUERY_RESPONSE"] = 5;
+    values[valuesById[6] = "PRESENCE_PRESENCE_JOIN"] = 6;
+    values[valuesById[7] = "PRESENCE_PRESENCE_JOIN_ALL"] = 7;
+    values[valuesById[8] = "PRESENCE_PRESENCE_LEAVE"] = 8;
+    values[valuesById[9] = "PRESENCE_PRESENCE_LEAVE_ALL"] = 9;
+    values[valuesById[10] = "PRESENCE_SUBSCRIBE"] = 10;
+    values[valuesById[11] = "PRESENCE_UNSUBSCRIBE"] = 11;
+    values[valuesById[12] = "PRESENCE_SUBSCRIBE_ALL"] = 12;
+    values[valuesById[13] = "PRESENCE_UNSUBSCRIBE_ALL"] = 13;
+    values[valuesById[100] = "PRESENCE_INVALID_PRESENCE_USERS"] = 100;
+    values[valuesById[101] = "PRESENCE_MESSAGE_PERMISSION_ERROR"] = 101;
+    values[valuesById[102] = "PRESENCE_MESSAGE_DENIED"] = 102;
+    values[valuesById[103] = "PRESENCE_MULTIPLE_SUBSCRIPTIONS"] = 103;
+    values[valuesById[104] = "PRESENCE_NOT_SUBSCRIBED"] = 104;
     return values;
 })();
 
@@ -1622,7 +1629,7 @@ $root.PresenceMessage = (function() {
      * Properties of a PresenceMessage.
      * @exports IPresenceMessage
      * @interface IPresenceMessage
-     * @property {PRESENCE_ACTION} action PresenceMessage action
+     * @property {PRESENCE_ACTION|null} [action] PresenceMessage action
      * @property {TOPIC|null} [originalTOPIC] PresenceMessage originalTOPIC
      * @property {number|null} [originalAction] PresenceMessage originalAction
      * @property {string|null} [data] PresenceMessage data
@@ -1733,7 +1740,8 @@ $root.PresenceMessage = (function() {
     PresenceMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.originalTOPIC != null && message.hasOwnProperty("originalTOPIC"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.originalTOPIC);
         if (message.originalAction != null && message.hasOwnProperty("originalAction"))
@@ -1819,8 +1827,6 @@ $root.PresenceMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -1847,117 +1853,117 @@ $root.PresenceMessage = (function() {
  * RECORD_ACTION enum.
  * @exports RECORD_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} NOTIFY=2 NOTIFY value
- * @property {number} READ=3 READ value
- * @property {number} READ_RESPONSE=4 READ_RESPONSE value
- * @property {number} HEAD=5 HEAD value
- * @property {number} HEAD_RESPONSE=6 HEAD_RESPONSE value
- * @property {number} HEAD_BULK=7 HEAD_BULK value
- * @property {number} HEAD_RESPONSE_BULK=8 HEAD_RESPONSE_BULK value
- * @property {number} DELETE=9 DELETE value
- * @property {number} DELETE_SUCCESS=10 DELETE_SUCCESS value
- * @property {number} DELETE_BULK=11 DELETE_BULK value
- * @property {number} DELETE_BULK_SUCCESS=12 DELETE_BULK_SUCCESS value
- * @property {number} DELETED=13 DELETED value
- * @property {number} WRITE_ACKNOWLEDGEMENT=14 WRITE_ACKNOWLEDGEMENT value
- * @property {number} CREATE=15 CREATE value
- * @property {number} CREATEANDUPDATE=16 CREATEANDUPDATE value
- * @property {number} CREATEANDPATCH=17 CREATEANDPATCH value
- * @property {number} UPDATE=18 UPDATE value
- * @property {number} PATCH=19 PATCH value
- * @property {number} ERASE=20 ERASE value
- * @property {number} SUBSCRIBEANDHEAD=21 SUBSCRIBEANDHEAD value
- * @property {number} SUBSCRIBEANDREAD=22 SUBSCRIBEANDREAD value
- * @property {number} SUBSCRIBECREATEANDREAD=23 SUBSCRIBECREATEANDREAD value
- * @property {number} SUBSCRIBECREATEANDUPDATE=24 SUBSCRIBECREATEANDUPDATE value
- * @property {number} SUBSCRIBE=25 SUBSCRIBE value
- * @property {number} UNSUBSCRIBE=26 UNSUBSCRIBE value
- * @property {number} LISTEN=27 LISTEN value
- * @property {number} UNLISTEN=28 UNLISTEN value
- * @property {number} LISTEN_ACCEPT=29 LISTEN_ACCEPT value
- * @property {number} LISTEN_REJECT=30 LISTEN_REJECT value
- * @property {number} SUBSCRIPTION_HAS_PROVIDER=31 SUBSCRIPTION_HAS_PROVIDER value
- * @property {number} SUBSCRIPTION_HAS_NO_PROVIDER=32 SUBSCRIPTION_HAS_NO_PROVIDER value
- * @property {number} SUBSCRIPTION_FOR_PATTERN_FOUND=33 SUBSCRIPTION_FOR_PATTERN_FOUND value
- * @property {number} SUBSCRIPTION_FOR_PATTERN_REMOVED=34 SUBSCRIPTION_FOR_PATTERN_REMOVED value
- * @property {number} CACHE_RETRIEVAL_TIMEOUT=100 CACHE_RETRIEVAL_TIMEOUT value
- * @property {number} STORAGE_RETRIEVAL_TIMEOUT=101 STORAGE_RETRIEVAL_TIMEOUT value
- * @property {number} VERSION_EXISTS=102 VERSION_EXISTS value
- * @property {number} RECORD_LOAD_ERROR=103 RECORD_LOAD_ERROR value
- * @property {number} RECORD_CREATE_ERROR=104 RECORD_CREATE_ERROR value
- * @property {number} RECORD_UPDATE_ERROR=105 RECORD_UPDATE_ERROR value
- * @property {number} RECORD_DELETE_ERROR=106 RECORD_DELETE_ERROR value
- * @property {number} RECORD_NOT_FOUND=107 RECORD_NOT_FOUND value
- * @property {number} INVALID_VERSION=108 INVALID_VERSION value
- * @property {number} INVALID_PATCH_ON_HOTPATH=109 INVALID_PATCH_ON_HOTPATH value
- * @property {number} INVALID_LISTEN_REGEX=110 INVALID_LISTEN_REGEX value
- * @property {number} LISTEN_RESPONSE_TIMEOUT=111 LISTEN_RESPONSE_TIMEOUT value
- * @property {number} LISTEN_UNSUCCESSFUL=112 LISTEN_UNSUCCESSFUL value
- * @property {number} RECORD_NOTIFY_ERROR=113 RECORD_NOTIFY_ERROR value
- * @property {number} MESSAGE_PERMISSION_ERROR=114 MESSAGE_PERMISSION_ERROR value
- * @property {number} MESSAGE_DENIED=115 MESSAGE_DENIED value
- * @property {number} INVALID_MESSAGE_DATA=116 INVALID_MESSAGE_DATA value
- * @property {number} MULTIPLE_SUBSCRIPTIONS=117 MULTIPLE_SUBSCRIPTIONS value
- * @property {number} NOT_SUBSCRIBED=118 NOT_SUBSCRIBED value
+ * @property {number} RECORD_UNKNOWN=0 RECORD_UNKNOWN value
+ * @property {number} RECORD_ERROR=1 RECORD_ERROR value
+ * @property {number} RECORD_NOTIFY=2 RECORD_NOTIFY value
+ * @property {number} RECORD_READ=3 RECORD_READ value
+ * @property {number} RECORD_READ_RESPONSE=4 RECORD_READ_RESPONSE value
+ * @property {number} RECORD_HEAD=5 RECORD_HEAD value
+ * @property {number} RECORD_HEAD_RESPONSE=6 RECORD_HEAD_RESPONSE value
+ * @property {number} RECORD_HEAD_BULK=7 RECORD_HEAD_BULK value
+ * @property {number} RECORD_HEAD_RESPONSE_BULK=8 RECORD_HEAD_RESPONSE_BULK value
+ * @property {number} RECORD_DELETE=9 RECORD_DELETE value
+ * @property {number} RECORD_DELETE_SUCCESS=10 RECORD_DELETE_SUCCESS value
+ * @property {number} RECORD_DELETE_BULK=11 RECORD_DELETE_BULK value
+ * @property {number} RECORD_DELETE_BULK_SUCCESS=12 RECORD_DELETE_BULK_SUCCESS value
+ * @property {number} RECORD_DELETED=13 RECORD_DELETED value
+ * @property {number} RECORD_WRITE_ACKNOWLEDGEMENT=14 RECORD_WRITE_ACKNOWLEDGEMENT value
+ * @property {number} RECORD_CREATE=15 RECORD_CREATE value
+ * @property {number} RECORD_CREATEANDUPDATE=16 RECORD_CREATEANDUPDATE value
+ * @property {number} RECORD_CREATEANDPATCH=17 RECORD_CREATEANDPATCH value
+ * @property {number} RECORD_UPDATE=18 RECORD_UPDATE value
+ * @property {number} RECORD_PATCH=19 RECORD_PATCH value
+ * @property {number} RECORD_ERASE=20 RECORD_ERASE value
+ * @property {number} RECORD_SUBSCRIBEANDHEAD=21 RECORD_SUBSCRIBEANDHEAD value
+ * @property {number} RECORD_SUBSCRIBEANDREAD=22 RECORD_SUBSCRIBEANDREAD value
+ * @property {number} RECORD_SUBSCRIBECREATEANDREAD=23 RECORD_SUBSCRIBECREATEANDREAD value
+ * @property {number} RECORD_SUBSCRIBECREATEANDUPDATE=24 RECORD_SUBSCRIBECREATEANDUPDATE value
+ * @property {number} RECORD_SUBSCRIBE=25 RECORD_SUBSCRIBE value
+ * @property {number} RECORD_UNSUBSCRIBE=26 RECORD_UNSUBSCRIBE value
+ * @property {number} RECORD_LISTEN=27 RECORD_LISTEN value
+ * @property {number} RECORD_UNLISTEN=28 RECORD_UNLISTEN value
+ * @property {number} RECORD_LISTEN_ACCEPT=29 RECORD_LISTEN_ACCEPT value
+ * @property {number} RECORD_LISTEN_REJECT=30 RECORD_LISTEN_REJECT value
+ * @property {number} RECORD_SUBSCRIPTION_HAS_PROVIDER=31 RECORD_SUBSCRIPTION_HAS_PROVIDER value
+ * @property {number} RECORD_SUBSCRIPTION_HAS_NO_PROVIDER=32 RECORD_SUBSCRIPTION_HAS_NO_PROVIDER value
+ * @property {number} RECORD_SUBSCRIPTION_FOR_PATTERN_FOUND=33 RECORD_SUBSCRIPTION_FOR_PATTERN_FOUND value
+ * @property {number} RECORD_SUBSCRIPTION_FOR_PATTERN_REMOVED=34 RECORD_SUBSCRIPTION_FOR_PATTERN_REMOVED value
+ * @property {number} RECORD_CACHE_RETRIEVAL_TIMEOUT=100 RECORD_CACHE_RETRIEVAL_TIMEOUT value
+ * @property {number} RECORD_STORAGE_RETRIEVAL_TIMEOUT=101 RECORD_STORAGE_RETRIEVAL_TIMEOUT value
+ * @property {number} RECORD_VERSION_EXISTS=102 RECORD_VERSION_EXISTS value
+ * @property {number} RECORD_RECORD_LOAD_ERROR=103 RECORD_RECORD_LOAD_ERROR value
+ * @property {number} RECORD_RECORD_CREATE_ERROR=104 RECORD_RECORD_CREATE_ERROR value
+ * @property {number} RECORD_RECORD_UPDATE_ERROR=105 RECORD_RECORD_UPDATE_ERROR value
+ * @property {number} RECORD_RECORD_DELETE_ERROR=106 RECORD_RECORD_DELETE_ERROR value
+ * @property {number} RECORD_RECORD_NOT_FOUND=107 RECORD_RECORD_NOT_FOUND value
+ * @property {number} RECORD_INVALID_VERSION=108 RECORD_INVALID_VERSION value
+ * @property {number} RECORD_INVALID_PATCH_ON_HOTPATH=109 RECORD_INVALID_PATCH_ON_HOTPATH value
+ * @property {number} RECORD_INVALID_LISTEN_REGEX=110 RECORD_INVALID_LISTEN_REGEX value
+ * @property {number} RECORD_LISTEN_RESPONSE_TIMEOUT=111 RECORD_LISTEN_RESPONSE_TIMEOUT value
+ * @property {number} RECORD_LISTEN_UNSUCCESSFUL=112 RECORD_LISTEN_UNSUCCESSFUL value
+ * @property {number} RECORD_RECORD_NOTIFY_ERROR=113 RECORD_RECORD_NOTIFY_ERROR value
+ * @property {number} RECORD_MESSAGE_PERMISSION_ERROR=114 RECORD_MESSAGE_PERMISSION_ERROR value
+ * @property {number} RECORD_MESSAGE_DENIED=115 RECORD_MESSAGE_DENIED value
+ * @property {number} RECORD_INVALID_MESSAGE_DATA=116 RECORD_INVALID_MESSAGE_DATA value
+ * @property {number} RECORD_MULTIPLE_SUBSCRIPTIONS=117 RECORD_MULTIPLE_SUBSCRIPTIONS value
+ * @property {number} RECORD_NOT_SUBSCRIBED=118 RECORD_NOT_SUBSCRIBED value
  */
 $root.RECORD_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "NOTIFY"] = 2;
-    values[valuesById[3] = "READ"] = 3;
-    values[valuesById[4] = "READ_RESPONSE"] = 4;
-    values[valuesById[5] = "HEAD"] = 5;
-    values[valuesById[6] = "HEAD_RESPONSE"] = 6;
-    values[valuesById[7] = "HEAD_BULK"] = 7;
-    values[valuesById[8] = "HEAD_RESPONSE_BULK"] = 8;
-    values[valuesById[9] = "DELETE"] = 9;
-    values[valuesById[10] = "DELETE_SUCCESS"] = 10;
-    values[valuesById[11] = "DELETE_BULK"] = 11;
-    values[valuesById[12] = "DELETE_BULK_SUCCESS"] = 12;
-    values[valuesById[13] = "DELETED"] = 13;
-    values[valuesById[14] = "WRITE_ACKNOWLEDGEMENT"] = 14;
-    values[valuesById[15] = "CREATE"] = 15;
-    values[valuesById[16] = "CREATEANDUPDATE"] = 16;
-    values[valuesById[17] = "CREATEANDPATCH"] = 17;
-    values[valuesById[18] = "UPDATE"] = 18;
-    values[valuesById[19] = "PATCH"] = 19;
-    values[valuesById[20] = "ERASE"] = 20;
-    values[valuesById[21] = "SUBSCRIBEANDHEAD"] = 21;
-    values[valuesById[22] = "SUBSCRIBEANDREAD"] = 22;
-    values[valuesById[23] = "SUBSCRIBECREATEANDREAD"] = 23;
-    values[valuesById[24] = "SUBSCRIBECREATEANDUPDATE"] = 24;
-    values[valuesById[25] = "SUBSCRIBE"] = 25;
-    values[valuesById[26] = "UNSUBSCRIBE"] = 26;
-    values[valuesById[27] = "LISTEN"] = 27;
-    values[valuesById[28] = "UNLISTEN"] = 28;
-    values[valuesById[29] = "LISTEN_ACCEPT"] = 29;
-    values[valuesById[30] = "LISTEN_REJECT"] = 30;
-    values[valuesById[31] = "SUBSCRIPTION_HAS_PROVIDER"] = 31;
-    values[valuesById[32] = "SUBSCRIPTION_HAS_NO_PROVIDER"] = 32;
-    values[valuesById[33] = "SUBSCRIPTION_FOR_PATTERN_FOUND"] = 33;
-    values[valuesById[34] = "SUBSCRIPTION_FOR_PATTERN_REMOVED"] = 34;
-    values[valuesById[100] = "CACHE_RETRIEVAL_TIMEOUT"] = 100;
-    values[valuesById[101] = "STORAGE_RETRIEVAL_TIMEOUT"] = 101;
-    values[valuesById[102] = "VERSION_EXISTS"] = 102;
-    values[valuesById[103] = "RECORD_LOAD_ERROR"] = 103;
-    values[valuesById[104] = "RECORD_CREATE_ERROR"] = 104;
-    values[valuesById[105] = "RECORD_UPDATE_ERROR"] = 105;
-    values[valuesById[106] = "RECORD_DELETE_ERROR"] = 106;
-    values[valuesById[107] = "RECORD_NOT_FOUND"] = 107;
-    values[valuesById[108] = "INVALID_VERSION"] = 108;
-    values[valuesById[109] = "INVALID_PATCH_ON_HOTPATH"] = 109;
-    values[valuesById[110] = "INVALID_LISTEN_REGEX"] = 110;
-    values[valuesById[111] = "LISTEN_RESPONSE_TIMEOUT"] = 111;
-    values[valuesById[112] = "LISTEN_UNSUCCESSFUL"] = 112;
-    values[valuesById[113] = "RECORD_NOTIFY_ERROR"] = 113;
-    values[valuesById[114] = "MESSAGE_PERMISSION_ERROR"] = 114;
-    values[valuesById[115] = "MESSAGE_DENIED"] = 115;
-    values[valuesById[116] = "INVALID_MESSAGE_DATA"] = 116;
-    values[valuesById[117] = "MULTIPLE_SUBSCRIPTIONS"] = 117;
-    values[valuesById[118] = "NOT_SUBSCRIBED"] = 118;
+    values[valuesById[0] = "RECORD_UNKNOWN"] = 0;
+    values[valuesById[1] = "RECORD_ERROR"] = 1;
+    values[valuesById[2] = "RECORD_NOTIFY"] = 2;
+    values[valuesById[3] = "RECORD_READ"] = 3;
+    values[valuesById[4] = "RECORD_READ_RESPONSE"] = 4;
+    values[valuesById[5] = "RECORD_HEAD"] = 5;
+    values[valuesById[6] = "RECORD_HEAD_RESPONSE"] = 6;
+    values[valuesById[7] = "RECORD_HEAD_BULK"] = 7;
+    values[valuesById[8] = "RECORD_HEAD_RESPONSE_BULK"] = 8;
+    values[valuesById[9] = "RECORD_DELETE"] = 9;
+    values[valuesById[10] = "RECORD_DELETE_SUCCESS"] = 10;
+    values[valuesById[11] = "RECORD_DELETE_BULK"] = 11;
+    values[valuesById[12] = "RECORD_DELETE_BULK_SUCCESS"] = 12;
+    values[valuesById[13] = "RECORD_DELETED"] = 13;
+    values[valuesById[14] = "RECORD_WRITE_ACKNOWLEDGEMENT"] = 14;
+    values[valuesById[15] = "RECORD_CREATE"] = 15;
+    values[valuesById[16] = "RECORD_CREATEANDUPDATE"] = 16;
+    values[valuesById[17] = "RECORD_CREATEANDPATCH"] = 17;
+    values[valuesById[18] = "RECORD_UPDATE"] = 18;
+    values[valuesById[19] = "RECORD_PATCH"] = 19;
+    values[valuesById[20] = "RECORD_ERASE"] = 20;
+    values[valuesById[21] = "RECORD_SUBSCRIBEANDHEAD"] = 21;
+    values[valuesById[22] = "RECORD_SUBSCRIBEANDREAD"] = 22;
+    values[valuesById[23] = "RECORD_SUBSCRIBECREATEANDREAD"] = 23;
+    values[valuesById[24] = "RECORD_SUBSCRIBECREATEANDUPDATE"] = 24;
+    values[valuesById[25] = "RECORD_SUBSCRIBE"] = 25;
+    values[valuesById[26] = "RECORD_UNSUBSCRIBE"] = 26;
+    values[valuesById[27] = "RECORD_LISTEN"] = 27;
+    values[valuesById[28] = "RECORD_UNLISTEN"] = 28;
+    values[valuesById[29] = "RECORD_LISTEN_ACCEPT"] = 29;
+    values[valuesById[30] = "RECORD_LISTEN_REJECT"] = 30;
+    values[valuesById[31] = "RECORD_SUBSCRIPTION_HAS_PROVIDER"] = 31;
+    values[valuesById[32] = "RECORD_SUBSCRIPTION_HAS_NO_PROVIDER"] = 32;
+    values[valuesById[33] = "RECORD_SUBSCRIPTION_FOR_PATTERN_FOUND"] = 33;
+    values[valuesById[34] = "RECORD_SUBSCRIPTION_FOR_PATTERN_REMOVED"] = 34;
+    values[valuesById[100] = "RECORD_CACHE_RETRIEVAL_TIMEOUT"] = 100;
+    values[valuesById[101] = "RECORD_STORAGE_RETRIEVAL_TIMEOUT"] = 101;
+    values[valuesById[102] = "RECORD_VERSION_EXISTS"] = 102;
+    values[valuesById[103] = "RECORD_RECORD_LOAD_ERROR"] = 103;
+    values[valuesById[104] = "RECORD_RECORD_CREATE_ERROR"] = 104;
+    values[valuesById[105] = "RECORD_RECORD_UPDATE_ERROR"] = 105;
+    values[valuesById[106] = "RECORD_RECORD_DELETE_ERROR"] = 106;
+    values[valuesById[107] = "RECORD_RECORD_NOT_FOUND"] = 107;
+    values[valuesById[108] = "RECORD_INVALID_VERSION"] = 108;
+    values[valuesById[109] = "RECORD_INVALID_PATCH_ON_HOTPATH"] = 109;
+    values[valuesById[110] = "RECORD_INVALID_LISTEN_REGEX"] = 110;
+    values[valuesById[111] = "RECORD_LISTEN_RESPONSE_TIMEOUT"] = 111;
+    values[valuesById[112] = "RECORD_LISTEN_UNSUCCESSFUL"] = 112;
+    values[valuesById[113] = "RECORD_RECORD_NOTIFY_ERROR"] = 113;
+    values[valuesById[114] = "RECORD_MESSAGE_PERMISSION_ERROR"] = 114;
+    values[valuesById[115] = "RECORD_MESSAGE_DENIED"] = 115;
+    values[valuesById[116] = "RECORD_INVALID_MESSAGE_DATA"] = 116;
+    values[valuesById[117] = "RECORD_MULTIPLE_SUBSCRIPTIONS"] = 117;
+    values[valuesById[118] = "RECORD_NOT_SUBSCRIBED"] = 118;
     return values;
 })();
 
@@ -1967,7 +1973,7 @@ $root.RecordMessage = (function() {
      * Properties of a RecordMessage.
      * @exports IRecordMessage
      * @interface IRecordMessage
-     * @property {RECORD_ACTION} action RecordMessage action
+     * @property {RECORD_ACTION|null} [action] RecordMessage action
      * @property {string|null} [data] RecordMessage data
      * @property {string|null} [correlationId] RecordMessage correlationId
      * @property {boolean|null} [isError] RecordMessage isError
@@ -2124,7 +2130,8 @@ $root.RecordMessage = (function() {
     RecordMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.correlationId != null && message.hasOwnProperty("correlationId"))
@@ -2241,8 +2248,6 @@ $root.RecordMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -2269,49 +2274,49 @@ $root.RecordMessage = (function() {
  * RPC_ACTION enum.
  * @exports RPC_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} REQUEST=2 REQUEST value
- * @property {number} ACCEPT=4 ACCEPT value
- * @property {number} RESPONSE=5 RESPONSE value
- * @property {number} REJECT=6 REJECT value
- * @property {number} REQUEST_ERROR=7 REQUEST_ERROR value
- * @property {number} PROVIDE=8 PROVIDE value
- * @property {number} UNPROVIDE=9 UNPROVIDE value
- * @property {number} NO_RPC_PROVIDER=100 NO_RPC_PROVIDER value
- * @property {number} ACCEPT_TIMEOUT=101 ACCEPT_TIMEOUT value
- * @property {number} MULTIPLE_ACCEPT=102 MULTIPLE_ACCEPT value
- * @property {number} INVALID_RPC_CORRELATION_ID=103 INVALID_RPC_CORRELATION_ID value
- * @property {number} RESPONSE_TIMEOUT=104 RESPONSE_TIMEOUT value
- * @property {number} MULTIPLE_RESPONSE=105 MULTIPLE_RESPONSE value
- * @property {number} MESSAGE_PERMISSION_ERROR=106 MESSAGE_PERMISSION_ERROR value
- * @property {number} MESSAGE_DENIED=107 MESSAGE_DENIED value
- * @property {number} INVALID_MESSAGE_DATA=108 INVALID_MESSAGE_DATA value
- * @property {number} MULTIPLE_PROVIDERS=109 MULTIPLE_PROVIDERS value
- * @property {number} NOT_PROVIDED=110 NOT_PROVIDED value
+ * @property {number} RPC_UNKNOWN=0 RPC_UNKNOWN value
+ * @property {number} RPC_ERROR=1 RPC_ERROR value
+ * @property {number} RPC_REQUEST=2 RPC_REQUEST value
+ * @property {number} RPC_ACCEPT=4 RPC_ACCEPT value
+ * @property {number} RPC_RESPONSE=5 RPC_RESPONSE value
+ * @property {number} RPC_REJECT=6 RPC_REJECT value
+ * @property {number} RPC_REQUEST_ERROR=7 RPC_REQUEST_ERROR value
+ * @property {number} RPC_PROVIDE=8 RPC_PROVIDE value
+ * @property {number} RPC_UNPROVIDE=9 RPC_UNPROVIDE value
+ * @property {number} RPC_NO_RPC_PROVIDER=100 RPC_NO_RPC_PROVIDER value
+ * @property {number} RPC_ACCEPT_TIMEOUT=101 RPC_ACCEPT_TIMEOUT value
+ * @property {number} RPC_MULTIPLE_ACCEPT=102 RPC_MULTIPLE_ACCEPT value
+ * @property {number} RPC_INVALID_RPC_CORRELATION_ID=103 RPC_INVALID_RPC_CORRELATION_ID value
+ * @property {number} RPC_RESPONSE_TIMEOUT=104 RPC_RESPONSE_TIMEOUT value
+ * @property {number} RPC_MULTIPLE_RESPONSE=105 RPC_MULTIPLE_RESPONSE value
+ * @property {number} RPC_MESSAGE_PERMISSION_ERROR=106 RPC_MESSAGE_PERMISSION_ERROR value
+ * @property {number} RPC_MESSAGE_DENIED=107 RPC_MESSAGE_DENIED value
+ * @property {number} RPC_INVALID_MESSAGE_DATA=108 RPC_INVALID_MESSAGE_DATA value
+ * @property {number} RPC_MULTIPLE_PROVIDERS=109 RPC_MULTIPLE_PROVIDERS value
+ * @property {number} RPC_NOT_PROVIDED=110 RPC_NOT_PROVIDED value
  */
 $root.RPC_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "REQUEST"] = 2;
-    values[valuesById[4] = "ACCEPT"] = 4;
-    values[valuesById[5] = "RESPONSE"] = 5;
-    values[valuesById[6] = "REJECT"] = 6;
-    values[valuesById[7] = "REQUEST_ERROR"] = 7;
-    values[valuesById[8] = "PROVIDE"] = 8;
-    values[valuesById[9] = "UNPROVIDE"] = 9;
-    values[valuesById[100] = "NO_RPC_PROVIDER"] = 100;
-    values[valuesById[101] = "ACCEPT_TIMEOUT"] = 101;
-    values[valuesById[102] = "MULTIPLE_ACCEPT"] = 102;
-    values[valuesById[103] = "INVALID_RPC_CORRELATION_ID"] = 103;
-    values[valuesById[104] = "RESPONSE_TIMEOUT"] = 104;
-    values[valuesById[105] = "MULTIPLE_RESPONSE"] = 105;
-    values[valuesById[106] = "MESSAGE_PERMISSION_ERROR"] = 106;
-    values[valuesById[107] = "MESSAGE_DENIED"] = 107;
-    values[valuesById[108] = "INVALID_MESSAGE_DATA"] = 108;
-    values[valuesById[109] = "MULTIPLE_PROVIDERS"] = 109;
-    values[valuesById[110] = "NOT_PROVIDED"] = 110;
+    values[valuesById[0] = "RPC_UNKNOWN"] = 0;
+    values[valuesById[1] = "RPC_ERROR"] = 1;
+    values[valuesById[2] = "RPC_REQUEST"] = 2;
+    values[valuesById[4] = "RPC_ACCEPT"] = 4;
+    values[valuesById[5] = "RPC_RESPONSE"] = 5;
+    values[valuesById[6] = "RPC_REJECT"] = 6;
+    values[valuesById[7] = "RPC_REQUEST_ERROR"] = 7;
+    values[valuesById[8] = "RPC_PROVIDE"] = 8;
+    values[valuesById[9] = "RPC_UNPROVIDE"] = 9;
+    values[valuesById[100] = "RPC_NO_RPC_PROVIDER"] = 100;
+    values[valuesById[101] = "RPC_ACCEPT_TIMEOUT"] = 101;
+    values[valuesById[102] = "RPC_MULTIPLE_ACCEPT"] = 102;
+    values[valuesById[103] = "RPC_INVALID_RPC_CORRELATION_ID"] = 103;
+    values[valuesById[104] = "RPC_RESPONSE_TIMEOUT"] = 104;
+    values[valuesById[105] = "RPC_MULTIPLE_RESPONSE"] = 105;
+    values[valuesById[106] = "RPC_MESSAGE_PERMISSION_ERROR"] = 106;
+    values[valuesById[107] = "RPC_MESSAGE_DENIED"] = 107;
+    values[valuesById[108] = "RPC_INVALID_MESSAGE_DATA"] = 108;
+    values[valuesById[109] = "RPC_MULTIPLE_PROVIDERS"] = 109;
+    values[valuesById[110] = "RPC_NOT_PROVIDED"] = 110;
     return values;
 })();
 
@@ -2321,7 +2326,7 @@ $root.RpcMessage = (function() {
      * Properties of a RpcMessage.
      * @exports IRpcMessage
      * @interface IRpcMessage
-     * @property {RPC_ACTION} action RpcMessage action
+     * @property {RPC_ACTION|null} [action] RpcMessage action
      * @property {string|null} [data] RpcMessage data
      * @property {string|null} [correlationId] RpcMessage correlationId
      * @property {boolean|null} [isError] RpcMessage isError
@@ -2329,7 +2334,7 @@ $root.RpcMessage = (function() {
      * @property {Array.<string>|null} [names] RpcMessage names
      * @property {string|null} [name] RpcMessage name
      * @property {string|null} [reason] RpcMessage reason
-     * @property {RPC_ACTION|null} [originalAction] RpcMessage originalAction
+     * @property {number|null} [originalAction] RpcMessage originalAction
      */
 
     /**
@@ -2414,7 +2419,7 @@ $root.RpcMessage = (function() {
 
     /**
      * RpcMessage originalAction.
-     * @member {RPC_ACTION} originalAction
+     * @member {number} originalAction
      * @memberof RpcMessage
      * @instance
      */
@@ -2432,7 +2437,8 @@ $root.RpcMessage = (function() {
     RpcMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.correlationId != null && message.hasOwnProperty("correlationId"))
@@ -2518,8 +2524,6 @@ $root.RpcMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
@@ -2546,37 +2550,39 @@ $root.RpcMessage = (function() {
  * STATE_REGISTRY_TOPIC enum.
  * @exports STATE_REGISTRY_TOPIC
  * @enum {string}
- * @property {number} EVENT_SUBSCRIPTIONS=11 EVENT_SUBSCRIPTIONS value
- * @property {number} RECORD_SUBSCRIPTIONS=12 RECORD_SUBSCRIPTIONS value
- * @property {number} SUBSCRIPTIONS=9 SUBSCRIPTIONS value
- * @property {number} ONLINE_USERS=10 ONLINE_USERS value
- * @property {number} MONITORING_SUBSCRIPTIONS=24 MONITORING_SUBSCRIPTIONS value
- * @property {number} RPC_SUBSCRIPTIONS=13 RPC_SUBSCRIPTIONS value
- * @property {number} PRESENCE_SUBSCRIPTIONS=14 PRESENCE_SUBSCRIPTIONS value
- * @property {number} RECORD_LISTEN_PATTERNS=15 RECORD_LISTEN_PATTERNS value
- * @property {number} EVENT_LISTEN_PATTERNS=16 EVENT_LISTEN_PATTERNS value
- * @property {number} RECORD_PUBLISHED_SUBSCRIPTIONS=17 RECORD_PUBLISHED_SUBSCRIPTIONS value
- * @property {number} EVENT_PUBLISHED_SUBSCRIPTIONS=18 EVENT_PUBLISHED_SUBSCRIPTIONS value
- * @property {number} RECORD_LISTENING=19 RECORD_LISTENING value
- * @property {number} EVENT_LISTENING=20 EVENT_LISTENING value
- * @property {number} STATE_REGISTRY=21 STATE_REGISTRY value
+ * @property {number} STATE_REGISTRY_UNKNOWN=0 STATE_REGISTRY_UNKNOWN value
+ * @property {number} STATE_REGISTRY_EVENT_SUBSCRIPTIONS=11 STATE_REGISTRY_EVENT_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_RECORD_SUBSCRIPTIONS=12 STATE_REGISTRY_RECORD_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_SUBSCRIPTIONS=9 STATE_REGISTRY_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_ONLINE_USERS=10 STATE_REGISTRY_ONLINE_USERS value
+ * @property {number} STATE_REGISTRY_MONITORING_SUBSCRIPTIONS=24 STATE_REGISTRY_MONITORING_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_RPC_SUBSCRIPTIONS=13 STATE_REGISTRY_RPC_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_PRESENCE_SUBSCRIPTIONS=14 STATE_REGISTRY_PRESENCE_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_RECORD_LISTEN_PATTERNS=15 STATE_REGISTRY_RECORD_LISTEN_PATTERNS value
+ * @property {number} STATE_REGISTRY_EVENT_LISTEN_PATTERNS=16 STATE_REGISTRY_EVENT_LISTEN_PATTERNS value
+ * @property {number} STATE_REGISTRY_RECORD_PUBLISHED_SUBSCRIPTIONS=17 STATE_REGISTRY_RECORD_PUBLISHED_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_EVENT_PUBLISHED_SUBSCRIPTIONS=18 STATE_REGISTRY_EVENT_PUBLISHED_SUBSCRIPTIONS value
+ * @property {number} STATE_REGISTRY_RECORD_LISTENING=19 STATE_REGISTRY_RECORD_LISTENING value
+ * @property {number} STATE_REGISTRY_EVENT_LISTENING=20 STATE_REGISTRY_EVENT_LISTENING value
+ * @property {number} STATE_REGISTRY_STATE_REGISTRY=21 STATE_REGISTRY_STATE_REGISTRY value
  */
 $root.STATE_REGISTRY_TOPIC = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[11] = "EVENT_SUBSCRIPTIONS"] = 11;
-    values[valuesById[12] = "RECORD_SUBSCRIPTIONS"] = 12;
-    values[valuesById[9] = "SUBSCRIPTIONS"] = 9;
-    values[valuesById[10] = "ONLINE_USERS"] = 10;
-    values[valuesById[24] = "MONITORING_SUBSCRIPTIONS"] = 24;
-    values[valuesById[13] = "RPC_SUBSCRIPTIONS"] = 13;
-    values[valuesById[14] = "PRESENCE_SUBSCRIPTIONS"] = 14;
-    values[valuesById[15] = "RECORD_LISTEN_PATTERNS"] = 15;
-    values[valuesById[16] = "EVENT_LISTEN_PATTERNS"] = 16;
-    values[valuesById[17] = "RECORD_PUBLISHED_SUBSCRIPTIONS"] = 17;
-    values[valuesById[18] = "EVENT_PUBLISHED_SUBSCRIPTIONS"] = 18;
-    values[valuesById[19] = "RECORD_LISTENING"] = 19;
-    values[valuesById[20] = "EVENT_LISTENING"] = 20;
-    values[valuesById[21] = "STATE_REGISTRY"] = 21;
+    values[valuesById[0] = "STATE_REGISTRY_UNKNOWN"] = 0;
+    values[valuesById[11] = "STATE_REGISTRY_EVENT_SUBSCRIPTIONS"] = 11;
+    values[valuesById[12] = "STATE_REGISTRY_RECORD_SUBSCRIPTIONS"] = 12;
+    values[valuesById[9] = "STATE_REGISTRY_SUBSCRIPTIONS"] = 9;
+    values[valuesById[10] = "STATE_REGISTRY_ONLINE_USERS"] = 10;
+    values[valuesById[24] = "STATE_REGISTRY_MONITORING_SUBSCRIPTIONS"] = 24;
+    values[valuesById[13] = "STATE_REGISTRY_RPC_SUBSCRIPTIONS"] = 13;
+    values[valuesById[14] = "STATE_REGISTRY_PRESENCE_SUBSCRIPTIONS"] = 14;
+    values[valuesById[15] = "STATE_REGISTRY_RECORD_LISTEN_PATTERNS"] = 15;
+    values[valuesById[16] = "STATE_REGISTRY_EVENT_LISTEN_PATTERNS"] = 16;
+    values[valuesById[17] = "STATE_REGISTRY_RECORD_PUBLISHED_SUBSCRIPTIONS"] = 17;
+    values[valuesById[18] = "STATE_REGISTRY_EVENT_PUBLISHED_SUBSCRIPTIONS"] = 18;
+    values[valuesById[19] = "STATE_REGISTRY_RECORD_LISTENING"] = 19;
+    values[valuesById[20] = "STATE_REGISTRY_EVENT_LISTENING"] = 20;
+    values[valuesById[21] = "STATE_REGISTRY_STATE_REGISTRY"] = 21;
     return values;
 })();
 
@@ -2584,23 +2590,23 @@ $root.STATE_REGISTRY_TOPIC = (function() {
  * STATE_ACTION enum.
  * @exports STATE_ACTION
  * @enum {string}
- * @property {number} UNKNOWN=0 UNKNOWN value
- * @property {number} ERROR=1 ERROR value
- * @property {number} ADD=2 ADD value
- * @property {number} REMOVE=3 REMOVE value
- * @property {number} REQUEST_FULL_STATE=4 REQUEST_FULL_STATE value
- * @property {number} FULL_STATE=5 FULL_STATE value
- * @property {number} CHECKSUM=6 CHECKSUM value
+ * @property {number} STATE_UNKNOWN=0 STATE_UNKNOWN value
+ * @property {number} STATE_ERROR=1 STATE_ERROR value
+ * @property {number} STATE_ADD=2 STATE_ADD value
+ * @property {number} STATE_REMOVE=3 STATE_REMOVE value
+ * @property {number} STATE_REQUEST_FULL_STATE=4 STATE_REQUEST_FULL_STATE value
+ * @property {number} STATE_FULL_STATE=5 STATE_FULL_STATE value
+ * @property {number} STATE_CHECKSUM=6 STATE_CHECKSUM value
  */
 $root.STATE_ACTION = (function() {
     var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "UNKNOWN"] = 0;
-    values[valuesById[1] = "ERROR"] = 1;
-    values[valuesById[2] = "ADD"] = 2;
-    values[valuesById[3] = "REMOVE"] = 3;
-    values[valuesById[4] = "REQUEST_FULL_STATE"] = 4;
-    values[valuesById[5] = "FULL_STATE"] = 5;
-    values[valuesById[6] = "CHECKSUM"] = 6;
+    values[valuesById[0] = "STATE_UNKNOWN"] = 0;
+    values[valuesById[1] = "STATE_ERROR"] = 1;
+    values[valuesById[2] = "STATE_ADD"] = 2;
+    values[valuesById[3] = "STATE_REMOVE"] = 3;
+    values[valuesById[4] = "STATE_REQUEST_FULL_STATE"] = 4;
+    values[valuesById[5] = "STATE_FULL_STATE"] = 5;
+    values[valuesById[6] = "STATE_CHECKSUM"] = 6;
     return values;
 })();
 
@@ -2610,7 +2616,7 @@ $root.StateMessage = (function() {
      * Properties of a StateMessage.
      * @exports IStateMessage
      * @interface IStateMessage
-     * @property {STATE_ACTION} action StateMessage action
+     * @property {STATE_ACTION|null} [action] StateMessage action
      * @property {string|null} [data] StateMessage data
      * @property {boolean|null} [isError] StateMessage isError
      * @property {number|null} [checksum] StateMessage checksum
@@ -2689,7 +2695,7 @@ $root.StateMessage = (function() {
      * @memberof StateMessage
      * @instance
      */
-    StateMessage.prototype.registryTOPIC = 11;
+    StateMessage.prototype.registryTOPIC = 0;
 
     /**
      * Encodes the specified StateMessage message. Does not implicitly {@link StateMessage.verify|verify} messages.
@@ -2703,7 +2709,8 @@ $root.StateMessage = (function() {
     StateMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
+        if (message.action != null && message.hasOwnProperty("action"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
         if (message.data != null && message.hasOwnProperty("data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
         if (message.isError != null && message.hasOwnProperty("isError"))
@@ -2779,8 +2786,6 @@ $root.StateMessage = (function() {
                 break;
             }
         }
-        if (!message.hasOwnProperty("action"))
-            throw $util.ProtocolError("missing required 'action'", { instance: message });
         return message;
     };
 
