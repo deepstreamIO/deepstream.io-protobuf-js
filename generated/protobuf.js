@@ -443,6 +443,8 @@ $root.ConnectionMessage = (function() {
      * @property {boolean|null} [isAck] ConnectionMessage isAck
      * @property {string|null} [url] ConnectionMessage url
      * @property {string|null} [protocolVersion] ConnectionMessage protocolVersion
+     * @property {string|null} [sdkType] ConnectionMessage sdkType
+     * @property {string|null} [sdkVersion] ConnectionMessage sdkVersion
      */
 
     /**
@@ -509,6 +511,22 @@ $root.ConnectionMessage = (function() {
     ConnectionMessage.prototype.protocolVersion = "";
 
     /**
+     * ConnectionMessage sdkType.
+     * @member {string} sdkType
+     * @memberof ConnectionMessage
+     * @instance
+     */
+    ConnectionMessage.prototype.sdkType = "";
+
+    /**
+     * ConnectionMessage sdkVersion.
+     * @member {string} sdkVersion
+     * @memberof ConnectionMessage
+     * @instance
+     */
+    ConnectionMessage.prototype.sdkVersion = "";
+
+    /**
      * Encodes the specified ConnectionMessage message. Does not implicitly {@link ConnectionMessage.verify|verify} messages.
      * @function encode
      * @memberof ConnectionMessage
@@ -532,6 +550,10 @@ $root.ConnectionMessage = (function() {
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.url);
         if (message.protocolVersion != null && message.hasOwnProperty("protocolVersion"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.protocolVersion);
+        if (message.sdkVersion != null && message.hasOwnProperty("sdkVersion"))
+            writer.uint32(/* id 7, wireType 2 =*/58).string(message.sdkVersion);
+        if (message.sdkType != null && message.hasOwnProperty("sdkType"))
+            writer.uint32(/* id 8, wireType 2 =*/66).string(message.sdkType);
         return writer;
     };
 
@@ -583,6 +605,12 @@ $root.ConnectionMessage = (function() {
                 break;
             case 6:
                 message.protocolVersion = reader.string();
+                break;
+            case 8:
+                message.sdkType = reader.string();
+                break;
+            case 7:
+                message.sdkVersion = reader.string();
                 break;
             default:
                 reader.skipType(tag & 7);
