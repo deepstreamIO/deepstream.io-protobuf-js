@@ -1,3 +1,7 @@
+# [1.0.3] - 2020-05-11
+  
+- Publishing via circleci
+
 # [1.0.2] - 2020-05-11
   
 - Updating protocol connection message to include sdkVersion and sdkType
