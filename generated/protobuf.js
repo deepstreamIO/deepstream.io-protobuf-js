@@ -12,7 +12,7 @@ var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 /**
  * AUTH_ACTION enum.
  * @exports AUTH_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} AUTH_UNKNOWN=0 AUTH_UNKNOWN value
  * @property {number} AUTH_ERROR=1 AUTH_ERROR value
  * @property {number} AUTH_REQUEST=2 AUTH_REQUEST value
@@ -106,13 +106,13 @@ $root.AuthMessage = (function() {
     AuthMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
         return writer;
     };
@@ -190,7 +190,7 @@ $root.AuthMessage = (function() {
 /**
  * CLUSTER_ACTION enum.
  * @exports CLUSTER_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} CLUSTER_UNKNOWN=0 CLUSTER_UNKNOWN value
  * @property {number} CLUSTER_REMOVE=1 CLUSTER_REMOVE value
  * @property {number} CLUSTER_STATUS=2 CLUSTER_STATUS value
@@ -301,19 +301,19 @@ $root.ClusterMessage = (function() {
     ClusterMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
-        if (message.leaderScore != null && message.hasOwnProperty("leaderScore"))
+        if (message.leaderScore != null && Object.hasOwnProperty.call(message, "leaderScore"))
             writer.uint32(/* id 5, wireType 0 =*/40).int32(message.leaderScore);
-        if (message.externalUrl != null && message.hasOwnProperty("externalUrl"))
+        if (message.externalUrl != null && Object.hasOwnProperty.call(message, "externalUrl"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.externalUrl);
-        if (message.role != null && message.hasOwnProperty("role"))
+        if (message.role != null && Object.hasOwnProperty.call(message, "role"))
             writer.uint32(/* id 7, wireType 2 =*/58).string(message.role);
         return writer;
     };
@@ -400,7 +400,7 @@ $root.ClusterMessage = (function() {
 /**
  * CONNECTION_ACTION enum.
  * @exports CONNECTION_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} CONNECTION_UNKNOWN=0 CONNECTION_UNKNOWN value
  * @property {number} CONNECTION_ERROR=1 CONNECTION_ERROR value
  * @property {number} CONNECTION_PING=2 CONNECTION_PING value
@@ -538,21 +538,21 @@ $root.ConnectionMessage = (function() {
     ConnectionMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
-        if (message.url != null && message.hasOwnProperty("url"))
+        if (message.url != null && Object.hasOwnProperty.call(message, "url"))
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.url);
-        if (message.protocolVersion != null && message.hasOwnProperty("protocolVersion"))
+        if (message.protocolVersion != null && Object.hasOwnProperty.call(message, "protocolVersion"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.protocolVersion);
-        if (message.sdkVersion != null && message.hasOwnProperty("sdkVersion"))
+        if (message.sdkVersion != null && Object.hasOwnProperty.call(message, "sdkVersion"))
             writer.uint32(/* id 7, wireType 2 =*/58).string(message.sdkVersion);
-        if (message.sdkType != null && message.hasOwnProperty("sdkType"))
+        if (message.sdkType != null && Object.hasOwnProperty.call(message, "sdkType"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.sdkType);
         return writer;
     };
@@ -642,7 +642,7 @@ $root.ConnectionMessage = (function() {
 /**
  * EVENT_ACTION enum.
  * @exports EVENT_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} EVENT_UNKNOWN=0 EVENT_UNKNOWN value
  * @property {number} EVENT_ERROR=1 EVENT_ERROR value
  * @property {number} EVENT_EMIT=2 EVENT_EMIT value
@@ -817,26 +817,26 @@ $root.EventMessage = (function() {
     EventMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.correlationId != null && message.hasOwnProperty("correlationId"))
+        if (message.correlationId != null && Object.hasOwnProperty.call(message, "correlationId"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.correlationId);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isAck);
-        if (message.name != null && message.hasOwnProperty("name"))
+        if (message.name != null && Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.name);
         if (message.names != null && message.names.length)
             for (var i = 0; i < message.names.length; ++i)
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.names[i]);
-        if (message.subscription != null && message.hasOwnProperty("subscription"))
+        if (message.subscription != null && Object.hasOwnProperty.call(message, "subscription"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.subscription);
-        if (message.originalTOPIC != null && message.hasOwnProperty("originalTOPIC"))
+        if (message.originalTOPIC != null && Object.hasOwnProperty.call(message, "originalTOPIC"))
             writer.uint32(/* id 10, wireType 0 =*/80).int32(message.originalTOPIC);
-        if (message.originalAction != null && message.hasOwnProperty("originalAction"))
+        if (message.originalAction != null && Object.hasOwnProperty.call(message, "originalAction"))
             writer.uint32(/* id 11, wireType 0 =*/88).int32(message.originalAction);
         return writer;
     };
@@ -934,7 +934,7 @@ $root.EventMessage = (function() {
 /**
  * TOPIC enum.
  * @exports TOPIC
- * @enum {string}
+ * @enum {number}
  * @property {number} UNKNOWN=0 UNKNOWN value
  * @property {number} PARSER=1 PARSER value
  * @property {number} CONNECTION=2 CONNECTION value
@@ -1020,9 +1020,9 @@ $root.Message = (function() {
     Message.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.topic != null && message.hasOwnProperty("topic"))
+        if (message.topic != null && Object.hasOwnProperty.call(message, "topic"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.topic);
-        if (message.message != null && message.hasOwnProperty("message"))
+        if (message.message != null && Object.hasOwnProperty.call(message, "message"))
             writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.message);
         return writer;
     };
@@ -1094,7 +1094,7 @@ $root.Message = (function() {
 /**
  * LOCK_ACTION enum.
  * @exports LOCK_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} LOCK_UNKNOWN=0 LOCK_UNKNOWN value
  * @property {number} LOCK_ERROR=1 LOCK_ERROR value
  * @property {number} LOCK_REQUEST=2 LOCK_REQUEST value
@@ -1164,9 +1164,9 @@ $root.LockMessage = (function() {
     LockMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.locked != null && message.hasOwnProperty("locked"))
+        if (message.locked != null && Object.hasOwnProperty.call(message, "locked"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.locked);
         return writer;
     };
@@ -1238,7 +1238,7 @@ $root.LockMessage = (function() {
 /**
  * MONITORING_ACTION enum.
  * @exports MONITORING_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} MONITORING_UNKNOWN=0 MONITORING_UNKNOWN value
  */
 $root.MONITORING_ACTION = (function() {
@@ -1327,15 +1327,15 @@ $root.MonitoringMessage = (function() {
     MonitoringMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.correlationId != null && message.hasOwnProperty("correlationId"))
+        if (message.correlationId != null && Object.hasOwnProperty.call(message, "correlationId"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.correlationId);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isAck);
         return writer;
     };
@@ -1416,7 +1416,7 @@ $root.MonitoringMessage = (function() {
 /**
  * PARSER_ACTION enum.
  * @exports PARSER_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} PARSER_UNKNOWN=0 PARSER_UNKNOWN value
  * @property {number} PARSER_UNKNOWN_TOPIC=1 PARSER_UNKNOWN_TOPIC value
  * @property {number} PARSER_UNKNOWN_ACTION=2 PARSER_UNKNOWN_ACTION value
@@ -1510,13 +1510,13 @@ $root.ParserMessage = (function() {
     ParserMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.originalTOPIC != null && message.hasOwnProperty("originalTOPIC"))
+        if (message.originalTOPIC != null && Object.hasOwnProperty.call(message, "originalTOPIC"))
             writer.uint32(/* id 8, wireType 0 =*/64).int32(message.originalTOPIC);
-        if (message.originalAction != null && message.hasOwnProperty("originalAction"))
+        if (message.originalAction != null && Object.hasOwnProperty.call(message, "originalAction"))
             writer.uint32(/* id 9, wireType 0 =*/72).int32(message.originalAction);
         return writer;
     };
@@ -1594,7 +1594,7 @@ $root.ParserMessage = (function() {
 /**
  * PRESENCE_ACTION enum.
  * @exports PRESENCE_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} PRESENCE_UNKNOWN=0 PRESENCE_UNKNOWN value
  * @property {number} PRESENCE_ERROR=1 PRESENCE_ERROR value
  * @property {number} PRESENCE_QUERY_ALL=2 PRESENCE_QUERY_ALL value
@@ -1756,21 +1756,21 @@ $root.PresenceMessage = (function() {
     PresenceMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.originalTOPIC != null && message.hasOwnProperty("originalTOPIC"))
+        if (message.originalTOPIC != null && Object.hasOwnProperty.call(message, "originalTOPIC"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.originalTOPIC);
-        if (message.originalAction != null && message.hasOwnProperty("originalAction"))
+        if (message.originalAction != null && Object.hasOwnProperty.call(message, "originalAction"))
             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.originalAction);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 4, wireType 2 =*/34).string(message.data);
-        if (message.correlationId != null && message.hasOwnProperty("correlationId"))
+        if (message.correlationId != null && Object.hasOwnProperty.call(message, "correlationId"))
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.correlationId);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isAck);
-        if (message.name != null && message.hasOwnProperty("name"))
+        if (message.name != null && Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.name);
         if (message.names != null && message.names.length)
             for (var i = 0; i < message.names.length; ++i)
@@ -1868,7 +1868,7 @@ $root.PresenceMessage = (function() {
 /**
  * RECORD_ACTION enum.
  * @exports RECORD_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} RECORD_UNKNOWN=0 RECORD_UNKNOWN value
  * @property {number} RECORD_ERROR=1 RECORD_ERROR value
  * @property {number} RECORD_NOTIFY=2 RECORD_NOTIFY value
@@ -2146,34 +2146,34 @@ $root.RecordMessage = (function() {
     RecordMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.correlationId != null && message.hasOwnProperty("correlationId"))
+        if (message.correlationId != null && Object.hasOwnProperty.call(message, "correlationId"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.correlationId);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isAck);
-        if (message.name != null && message.hasOwnProperty("name"))
+        if (message.name != null && Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 6, wireType 2 =*/50).string(message.name);
         if (message.names != null && message.names.length)
             for (var i = 0; i < message.names.length; ++i)
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.names[i]);
-        if (message.pattern != null && message.hasOwnProperty("pattern"))
+        if (message.pattern != null && Object.hasOwnProperty.call(message, "pattern"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.pattern);
-        if (message.subscription != null && message.hasOwnProperty("subscription"))
+        if (message.subscription != null && Object.hasOwnProperty.call(message, "subscription"))
             writer.uint32(/* id 9, wireType 2 =*/74).string(message.subscription);
-        if (message.originalAction != null && message.hasOwnProperty("originalAction"))
+        if (message.originalAction != null && Object.hasOwnProperty.call(message, "originalAction"))
             writer.uint32(/* id 10, wireType 0 =*/80).int32(message.originalAction);
-        if (message.isWriteAck != null && message.hasOwnProperty("isWriteAck"))
+        if (message.isWriteAck != null && Object.hasOwnProperty.call(message, "isWriteAck"))
             writer.uint32(/* id 11, wireType 0 =*/88).bool(message.isWriteAck);
-        if (message.path != null && message.hasOwnProperty("path"))
+        if (message.path != null && Object.hasOwnProperty.call(message, "path"))
             writer.uint32(/* id 12, wireType 2 =*/98).string(message.path);
-        if (message.version != null && message.hasOwnProperty("version"))
+        if (message.version != null && Object.hasOwnProperty.call(message, "version"))
             writer.uint32(/* id 13, wireType 0 =*/104).int32(message.version);
-        if (message.versions != null && message.hasOwnProperty("versions"))
+        if (message.versions != null && Object.hasOwnProperty.call(message, "versions"))
             for (var keys = Object.keys(message.versions), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 14, wireType 2 =*/114).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.versions[keys[i]]).ldelim();
         return writer;
@@ -2289,7 +2289,7 @@ $root.RecordMessage = (function() {
 /**
  * RPC_ACTION enum.
  * @exports RPC_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} RPC_UNKNOWN=0 RPC_UNKNOWN value
  * @property {number} RPC_ERROR=1 RPC_ERROR value
  * @property {number} RPC_REQUEST=2 RPC_REQUEST value
@@ -2453,24 +2453,24 @@ $root.RpcMessage = (function() {
     RpcMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.correlationId != null && message.hasOwnProperty("correlationId"))
+        if (message.correlationId != null && Object.hasOwnProperty.call(message, "correlationId"))
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.correlationId);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isError);
-        if (message.isAck != null && message.hasOwnProperty("isAck"))
+        if (message.isAck != null && Object.hasOwnProperty.call(message, "isAck"))
             writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isAck);
         if (message.names != null && message.names.length)
             for (var i = 0; i < message.names.length; ++i)
                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.names[i]);
-        if (message.name != null && message.hasOwnProperty("name"))
+        if (message.name != null && Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 7, wireType 2 =*/58).string(message.name);
-        if (message.reason != null && message.hasOwnProperty("reason"))
+        if (message.reason != null && Object.hasOwnProperty.call(message, "reason"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.reason);
-        if (message.originalAction != null && message.hasOwnProperty("originalAction"))
+        if (message.originalAction != null && Object.hasOwnProperty.call(message, "originalAction"))
             writer.uint32(/* id 9, wireType 0 =*/72).int32(message.originalAction);
         return writer;
     };
@@ -2565,7 +2565,7 @@ $root.RpcMessage = (function() {
 /**
  * STATE_REGISTRY_TOPIC enum.
  * @exports STATE_REGISTRY_TOPIC
- * @enum {string}
+ * @enum {number}
  * @property {number} STATE_REGISTRY_UNKNOWN=0 STATE_REGISTRY_UNKNOWN value
  * @property {number} STATE_REGISTRY_EVENT_SUBSCRIPTIONS=11 STATE_REGISTRY_EVENT_SUBSCRIPTIONS value
  * @property {number} STATE_REGISTRY_RECORD_SUBSCRIPTIONS=12 STATE_REGISTRY_RECORD_SUBSCRIPTIONS value
@@ -2605,7 +2605,7 @@ $root.STATE_REGISTRY_TOPIC = (function() {
 /**
  * STATE_ACTION enum.
  * @exports STATE_ACTION
- * @enum {string}
+ * @enum {number}
  * @property {number} STATE_UNKNOWN=0 STATE_UNKNOWN value
  * @property {number} STATE_ERROR=1 STATE_ERROR value
  * @property {number} STATE_ADD=2 STATE_ADD value
@@ -2725,20 +2725,20 @@ $root.StateMessage = (function() {
     StateMessage.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.action != null && message.hasOwnProperty("action"))
+        if (message.action != null && Object.hasOwnProperty.call(message, "action"))
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.action);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
-        if (message.isError != null && message.hasOwnProperty("isError"))
+        if (message.isError != null && Object.hasOwnProperty.call(message, "isError"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isError);
-        if (message.checksum != null && message.hasOwnProperty("checksum"))
+        if (message.checksum != null && Object.hasOwnProperty.call(message, "checksum"))
             writer.uint32(/* id 19, wireType 0 =*/152).int32(message.checksum);
         if (message.fullState != null && message.fullState.length)
             for (var i = 0; i < message.fullState.length; ++i)
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.fullState[i]);
-        if (message.serverName != null && message.hasOwnProperty("serverName"))
+        if (message.serverName != null && Object.hasOwnProperty.call(message, "serverName"))
             writer.uint32(/* id 21, wireType 2 =*/170).string(message.serverName);
-        if (message.registryTOPIC != null && message.hasOwnProperty("registryTOPIC"))
+        if (message.registryTOPIC != null && Object.hasOwnProperty.call(message, "registryTOPIC"))
             writer.uint32(/* id 22, wireType 0 =*/176).int32(message.registryTOPIC);
         return writer;
     };

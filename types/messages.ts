@@ -40,6 +40,8 @@ export interface Message {
     // connection
     url?: string
     protocolVersion?: string
+    sdkVersion?: string
+    sdkType?: string
 
     // record
     isWriteAck?: boolean
