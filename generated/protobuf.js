@@ -214,7 +214,6 @@ $root.ClusterMessage = (function() {
      * @property {boolean|null} [isError] ClusterMessage isError
      * @property {boolean|null} [isAck] ClusterMessage isAck
      * @property {number|null} [leaderScore] ClusterMessage leaderScore
-     * @property {string|null} [externalUrl] ClusterMessage externalUrl
      * @property {string|null} [role] ClusterMessage role
      */
 
@@ -274,14 +273,6 @@ $root.ClusterMessage = (function() {
     ClusterMessage.prototype.leaderScore = 0;
 
     /**
-     * ClusterMessage externalUrl.
-     * @member {string} externalUrl
-     * @memberof ClusterMessage
-     * @instance
-     */
-    ClusterMessage.prototype.externalUrl = "";
-
-    /**
      * ClusterMessage role.
      * @member {string} role
      * @memberof ClusterMessage
@@ -311,8 +302,6 @@ $root.ClusterMessage = (function() {
             writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isAck);
         if (message.leaderScore != null && Object.hasOwnProperty.call(message, "leaderScore"))
             writer.uint32(/* id 5, wireType 0 =*/40).int32(message.leaderScore);
-        if (message.externalUrl != null && Object.hasOwnProperty.call(message, "externalUrl"))
-            writer.uint32(/* id 6, wireType 2 =*/50).string(message.externalUrl);
         if (message.role != null && Object.hasOwnProperty.call(message, "role"))
             writer.uint32(/* id 7, wireType 2 =*/58).string(message.role);
         return writer;
@@ -363,9 +352,6 @@ $root.ClusterMessage = (function() {
                 break;
             case 5:
                 message.leaderScore = reader.int32();
-                break;
-            case 6:
-                message.externalUrl = reader.string();
                 break;
             case 7:
                 message.role = reader.string();

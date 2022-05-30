@@ -58,7 +58,6 @@ export interface Message {
 
     // cluster
     leaderScore?: number
-    externalUrl?: string,
     role?: string
 
     // lock
