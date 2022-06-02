@@ -87,6 +87,8 @@ export interface RPCMessage extends SubscriptionMessage {
     topic: TOPIC.RPC
     action: RPC_ACTION
     correlationId: string
+    requestorName?: string
+    requestorData?: string
 }
 
 export interface PresenceMessage extends Message {

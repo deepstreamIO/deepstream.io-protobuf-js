@@ -2335,8 +2335,9 @@ $root.RpcMessage = (function() {
      * @property {boolean|null} [isAck] RpcMessage isAck
      * @property {Array.<string>|null} [names] RpcMessage names
      * @property {string|null} [name] RpcMessage name
-     * @property {string|null} [reason] RpcMessage reason
      * @property {number|null} [originalAction] RpcMessage originalAction
+     * @property {string|null} [requestorName] RpcMessage requestorName
+     * @property {string|null} [requestorData] RpcMessage requestorData
      */
 
     /**
@@ -2412,20 +2413,28 @@ $root.RpcMessage = (function() {
     RpcMessage.prototype.name = "";
 
     /**
-     * RpcMessage reason.
-     * @member {string} reason
-     * @memberof RpcMessage
-     * @instance
-     */
-    RpcMessage.prototype.reason = "";
-
-    /**
      * RpcMessage originalAction.
      * @member {number} originalAction
      * @memberof RpcMessage
      * @instance
      */
     RpcMessage.prototype.originalAction = 0;
+
+    /**
+     * RpcMessage requestorName.
+     * @member {string} requestorName
+     * @memberof RpcMessage
+     * @instance
+     */
+    RpcMessage.prototype.requestorName = "";
+
+    /**
+     * RpcMessage requestorData.
+     * @member {string} requestorData
+     * @memberof RpcMessage
+     * @instance
+     */
+    RpcMessage.prototype.requestorData = "";
 
     /**
      * Encodes the specified RpcMessage message. Does not implicitly {@link RpcMessage.verify|verify} messages.
@@ -2454,10 +2463,12 @@ $root.RpcMessage = (function() {
                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.names[i]);
         if (message.name != null && Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 7, wireType 2 =*/58).string(message.name);
-        if (message.reason != null && Object.hasOwnProperty.call(message, "reason"))
-            writer.uint32(/* id 8, wireType 2 =*/66).string(message.reason);
         if (message.originalAction != null && Object.hasOwnProperty.call(message, "originalAction"))
             writer.uint32(/* id 9, wireType 0 =*/72).int32(message.originalAction);
+        if (message.requestorName != null && Object.hasOwnProperty.call(message, "requestorName"))
+            writer.uint32(/* id 10, wireType 2 =*/82).string(message.requestorName);
+        if (message.requestorData != null && Object.hasOwnProperty.call(message, "requestorData"))
+            writer.uint32(/* id 11, wireType 2 =*/90).string(message.requestorData);
         return writer;
     };
 
@@ -2515,11 +2526,14 @@ $root.RpcMessage = (function() {
             case 7:
                 message.name = reader.string();
                 break;
-            case 8:
-                message.reason = reader.string();
-                break;
             case 9:
                 message.originalAction = reader.int32();
+                break;
+            case 10:
+                message.requestorName = reader.string();
+                break;
+            case 11:
+                message.requestorData = reader.string();
                 break;
             default:
                 reader.skipType(tag & 7);
