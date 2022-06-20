@@ -1,6 +1,6 @@
 {
   "name": "@deepstream/protobuf",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "The protobuf protocol wrapper used by deepstream.io",
   "scripts": {
     "ci": "npm run generate && npm run tsc && npm run lint",

@@ -1,3 +1,7 @@
+# [1.0.8] - 2022-06-20
+
+- fix semver mismatch
+
 # [1.0.7] - 2022-06-20
 
 - parse requestorData
