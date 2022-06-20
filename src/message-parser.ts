@@ -24,6 +24,10 @@ export function parse (data: Uint8Array): Array<ParseResult> {
 }
 
 export function parseData (message: any): true | Error {
+  if (message.requestorData) {
+    message.requestorData = JSON.parse(message.requestorData)
+  }
+
   if (message.parsedData !== undefined || message.data === undefined) {
     return true
   }

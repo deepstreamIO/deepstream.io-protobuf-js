@@ -2192,7 +2192,7 @@ $root.RecordMessage = (function() {
     RecordMessage.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.RecordMessage(), key;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.RecordMessage(), key, value;
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -2238,12 +2238,26 @@ $root.RecordMessage = (function() {
                 message.version = reader.int32();
                 break;
             case 14:
-                reader.skip().pos++;
                 if (message.versions === $util.emptyObject)
                     message.versions = {};
-                key = reader.string();
-                reader.pos++;
-                message.versions[key] = reader.int32();
+                var end2 = reader.uint32() + reader.pos;
+                key = "";
+                value = 0;
+                while (reader.pos < end2) {
+                    var tag2 = reader.uint32();
+                    switch (tag2 >>> 3) {
+                    case 1:
+                        key = reader.string();
+                        break;
+                    case 2:
+                        value = reader.int32();
+                        break;
+                    default:
+                        reader.skipType(tag2 & 7);
+                        break;
+                    }
+                }
+                message.versions[key] = value;
                 break;
             default:
                 reader.skipType(tag & 7);
