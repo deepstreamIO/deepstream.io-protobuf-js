@@ -1,3 +1,8 @@
+# [1.0.7] - 2022-06-20
+
+- parse requestorData
+- Update deps
+
 # [1.0.6] - 2022-06-02
 
 - requestorName and requestorData on RPCmessage
