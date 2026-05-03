@@ -11,7 +11,7 @@ var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
 /**
  * AUTH_ACTION enum.
- * @exports AUTH_ACTION
+ * @name AUTH_ACTION
  * @enum {number}
  * @property {number} AUTH_UNKNOWN=0 AUTH_UNKNOWN value
  * @property {number} AUTH_ERROR=1 AUTH_ERROR value
@@ -58,7 +58,7 @@ $root.AuthMessage = (function() {
     function AuthMessage(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -141,27 +141,37 @@ $root.AuthMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    AuthMessage.decode = function decode(reader, length) {
+    AuthMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AuthMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.isError = reader.bool();
-                break;
-            case 4:
-                message.isAck = reader.bool();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 4: {
+                    message.isAck = reader.bool();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -184,12 +194,27 @@ $root.AuthMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for AuthMessage
+     * @function getTypeUrl
+     * @memberof AuthMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    AuthMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/AuthMessage";
+    };
+
     return AuthMessage;
 })();
 
 /**
  * CLUSTER_ACTION enum.
- * @exports CLUSTER_ACTION
+ * @name CLUSTER_ACTION
  * @enum {number}
  * @property {number} CLUSTER_UNKNOWN=0 CLUSTER_UNKNOWN value
  * @property {number} CLUSTER_REMOVE=1 CLUSTER_REMOVE value
@@ -228,7 +253,7 @@ $root.ClusterMessage = (function() {
     function ClusterMessage(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -331,33 +356,45 @@ $root.ClusterMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    ClusterMessage.decode = function decode(reader, length) {
+    ClusterMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ClusterMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.isError = reader.bool();
-                break;
-            case 4:
-                message.isAck = reader.bool();
-                break;
-            case 5:
-                message.leaderScore = reader.int32();
-                break;
-            case 7:
-                message.role = reader.string();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 4: {
+                    message.isAck = reader.bool();
+                    break;
+                }
+            case 5: {
+                    message.leaderScore = reader.int32();
+                    break;
+                }
+            case 7: {
+                    message.role = reader.string();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -380,12 +417,27 @@ $root.ClusterMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for ClusterMessage
+     * @function getTypeUrl
+     * @memberof ClusterMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    ClusterMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/ClusterMessage";
+    };
+
     return ClusterMessage;
 })();
 
 /**
  * CONNECTION_ACTION enum.
- * @exports CONNECTION_ACTION
+ * @name CONNECTION_ACTION
  * @enum {number}
  * @property {number} CONNECTION_UNKNOWN=0 CONNECTION_UNKNOWN value
  * @property {number} CONNECTION_ERROR=1 CONNECTION_ERROR value
@@ -444,7 +496,7 @@ $root.ConnectionMessage = (function() {
     function ConnectionMessage(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -567,39 +619,53 @@ $root.ConnectionMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    ConnectionMessage.decode = function decode(reader, length) {
+    ConnectionMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ConnectionMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.isError = reader.bool();
-                break;
-            case 4:
-                message.isAck = reader.bool();
-                break;
-            case 5:
-                message.url = reader.string();
-                break;
-            case 6:
-                message.protocolVersion = reader.string();
-                break;
-            case 8:
-                message.sdkType = reader.string();
-                break;
-            case 7:
-                message.sdkVersion = reader.string();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 4: {
+                    message.isAck = reader.bool();
+                    break;
+                }
+            case 5: {
+                    message.url = reader.string();
+                    break;
+                }
+            case 6: {
+                    message.protocolVersion = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.sdkType = reader.string();
+                    break;
+                }
+            case 7: {
+                    message.sdkVersion = reader.string();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -622,12 +688,27 @@ $root.ConnectionMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for ConnectionMessage
+     * @function getTypeUrl
+     * @memberof ConnectionMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    ConnectionMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/ConnectionMessage";
+    };
+
     return ConnectionMessage;
 })();
 
 /**
  * EVENT_ACTION enum.
- * @exports EVENT_ACTION
+ * @name EVENT_ACTION
  * @enum {number}
  * @property {number} EVENT_UNKNOWN=0 EVENT_UNKNOWN value
  * @property {number} EVENT_ERROR=1 EVENT_ERROR value
@@ -707,7 +788,7 @@ $root.EventMessage = (function() {
         this.names = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -851,47 +932,63 @@ $root.EventMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    EventMessage.decode = function decode(reader, length) {
+    EventMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.EventMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.correlationId = reader.string();
-                break;
-            case 4:
-                message.isError = reader.bool();
-                break;
-            case 5:
-                message.isAck = reader.bool();
-                break;
-            case 6:
-                message.name = reader.string();
-                break;
-            case 7:
-                if (!(message.names && message.names.length))
-                    message.names = [];
-                message.names.push(reader.string());
-                break;
-            case 8:
-                message.subscription = reader.string();
-                break;
-            case 10:
-                message.originalTOPIC = reader.int32();
-                break;
-            case 11:
-                message.originalAction = reader.int32();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.correlationId = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 5: {
+                    message.isAck = reader.bool();
+                    break;
+                }
+            case 6: {
+                    message.name = reader.string();
+                    break;
+                }
+            case 7: {
+                    if (!(message.names && message.names.length))
+                        message.names = [];
+                    message.names.push(reader.string());
+                    break;
+                }
+            case 8: {
+                    message.subscription = reader.string();
+                    break;
+                }
+            case 10: {
+                    message.originalTOPIC = reader.int32();
+                    break;
+                }
+            case 11: {
+                    message.originalAction = reader.int32();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -914,12 +1011,27 @@ $root.EventMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for EventMessage
+     * @function getTypeUrl
+     * @memberof EventMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    EventMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/EventMessage";
+    };
+
     return EventMessage;
 })();
 
 /**
  * TOPIC enum.
- * @exports TOPIC
+ * @name TOPIC
  * @enum {number}
  * @property {number} UNKNOWN=0 UNKNOWN value
  * @property {number} PARSER=1 PARSER value
@@ -974,7 +1086,7 @@ $root.Message = (function() {
     function Message(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -1037,21 +1149,29 @@ $root.Message = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    Message.decode = function decode(reader, length) {
+    Message.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Message();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 2:
-                message.topic = reader.int32();
-                break;
-            case 3:
-                message.message = reader.bytes();
-                break;
+            case 2: {
+                    message.topic = reader.int32();
+                    break;
+                }
+            case 3: {
+                    message.message = reader.bytes();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -1074,12 +1194,27 @@ $root.Message = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for Message
+     * @function getTypeUrl
+     * @memberof Message
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    Message.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/Message";
+    };
+
     return Message;
 })();
 
 /**
  * LOCK_ACTION enum.
- * @exports LOCK_ACTION
+ * @name LOCK_ACTION
  * @enum {number}
  * @property {number} LOCK_UNKNOWN=0 LOCK_UNKNOWN value
  * @property {number} LOCK_ERROR=1 LOCK_ERROR value
@@ -1118,7 +1253,7 @@ $root.LockMessage = (function() {
     function LockMessage(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -1181,21 +1316,29 @@ $root.LockMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    LockMessage.decode = function decode(reader, length) {
+    LockMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.LockMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 3:
-                message.locked = reader.bool();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 3: {
+                    message.locked = reader.bool();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -1218,12 +1361,27 @@ $root.LockMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for LockMessage
+     * @function getTypeUrl
+     * @memberof LockMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    LockMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/LockMessage";
+    };
+
     return LockMessage;
 })();
 
 /**
  * MONITORING_ACTION enum.
- * @exports MONITORING_ACTION
+ * @name MONITORING_ACTION
  * @enum {number}
  * @property {number} MONITORING_UNKNOWN=0 MONITORING_UNKNOWN value
  */
@@ -1257,7 +1415,7 @@ $root.MonitoringMessage = (function() {
     function MonitoringMessage(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -1350,30 +1508,41 @@ $root.MonitoringMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    MonitoringMessage.decode = function decode(reader, length) {
+    MonitoringMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MonitoringMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.correlationId = reader.string();
-                break;
-            case 4:
-                message.isError = reader.bool();
-                break;
-            case 5:
-                message.isAck = reader.bool();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.correlationId = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 5: {
+                    message.isAck = reader.bool();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -1396,12 +1565,27 @@ $root.MonitoringMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for MonitoringMessage
+     * @function getTypeUrl
+     * @memberof MonitoringMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    MonitoringMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/MonitoringMessage";
+    };
+
     return MonitoringMessage;
 })();
 
 /**
  * PARSER_ACTION enum.
- * @exports PARSER_ACTION
+ * @name PARSER_ACTION
  * @enum {number}
  * @property {number} PARSER_UNKNOWN=0 PARSER_UNKNOWN value
  * @property {number} PARSER_UNKNOWN_TOPIC=1 PARSER_UNKNOWN_TOPIC value
@@ -1448,7 +1632,7 @@ $root.ParserMessage = (function() {
     function ParserMessage(properties) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -1531,27 +1715,37 @@ $root.ParserMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    ParserMessage.decode = function decode(reader, length) {
+    ParserMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ParserMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 8:
-                message.originalTOPIC = reader.int32();
-                break;
-            case 9:
-                message.originalAction = reader.int32();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.originalTOPIC = reader.int32();
+                    break;
+                }
+            case 9: {
+                    message.originalAction = reader.int32();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -1574,12 +1768,27 @@ $root.ParserMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for ParserMessage
+     * @function getTypeUrl
+     * @memberof ParserMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    ParserMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/ParserMessage";
+    };
+
     return ParserMessage;
 })();
 
 /**
  * PRESENCE_ACTION enum.
- * @exports PRESENCE_ACTION
+ * @name PRESENCE_ACTION
  * @enum {number}
  * @property {number} PRESENCE_UNKNOWN=0 PRESENCE_UNKNOWN value
  * @property {number} PRESENCE_ERROR=1 PRESENCE_ERROR value
@@ -1654,7 +1863,7 @@ $root.PresenceMessage = (function() {
         this.names = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -1788,44 +1997,59 @@ $root.PresenceMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    PresenceMessage.decode = function decode(reader, length) {
+    PresenceMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.PresenceMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.originalTOPIC = reader.int32();
-                break;
-            case 3:
-                message.originalAction = reader.int32();
-                break;
-            case 4:
-                message.data = reader.string();
-                break;
-            case 5:
-                message.correlationId = reader.string();
-                break;
-            case 6:
-                message.isError = reader.bool();
-                break;
-            case 7:
-                message.isAck = reader.bool();
-                break;
-            case 8:
-                message.name = reader.string();
-                break;
-            case 9:
-                if (!(message.names && message.names.length))
-                    message.names = [];
-                message.names.push(reader.string());
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.originalTOPIC = reader.int32();
+                    break;
+                }
+            case 3: {
+                    message.originalAction = reader.int32();
+                    break;
+                }
+            case 4: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 5: {
+                    message.correlationId = reader.string();
+                    break;
+                }
+            case 6: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 7: {
+                    message.isAck = reader.bool();
+                    break;
+                }
+            case 8: {
+                    message.name = reader.string();
+                    break;
+                }
+            case 9: {
+                    if (!(message.names && message.names.length))
+                        message.names = [];
+                    message.names.push(reader.string());
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -1848,12 +2072,27 @@ $root.PresenceMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for PresenceMessage
+     * @function getTypeUrl
+     * @memberof PresenceMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    PresenceMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/PresenceMessage";
+    };
+
     return PresenceMessage;
 })();
 
 /**
  * RECORD_ACTION enum.
- * @exports RECORD_ACTION
+ * @name RECORD_ACTION
  * @enum {number}
  * @property {number} RECORD_UNKNOWN=0 RECORD_UNKNOWN value
  * @property {number} RECORD_ERROR=1 RECORD_ERROR value
@@ -2004,7 +2243,7 @@ $root.RecordMessage = (function() {
         this.versions = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -2189,78 +2428,100 @@ $root.RecordMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    RecordMessage.decode = function decode(reader, length) {
+    RecordMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.RecordMessage(), key, value;
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.correlationId = reader.string();
-                break;
-            case 4:
-                message.isError = reader.bool();
-                break;
-            case 5:
-                message.isAck = reader.bool();
-                break;
-            case 6:
-                message.name = reader.string();
-                break;
-            case 7:
-                if (!(message.names && message.names.length))
-                    message.names = [];
-                message.names.push(reader.string());
-                break;
-            case 8:
-                message.pattern = reader.string();
-                break;
-            case 9:
-                message.subscription = reader.string();
-                break;
-            case 10:
-                message.originalAction = reader.int32();
-                break;
-            case 11:
-                message.isWriteAck = reader.bool();
-                break;
-            case 12:
-                message.path = reader.string();
-                break;
-            case 13:
-                message.version = reader.int32();
-                break;
-            case 14:
-                if (message.versions === $util.emptyObject)
-                    message.versions = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.int32();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 1: {
+                    message.action = reader.int32();
+                    break;
                 }
-                message.versions[key] = value;
-                break;
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.correlationId = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 5: {
+                    message.isAck = reader.bool();
+                    break;
+                }
+            case 6: {
+                    message.name = reader.string();
+                    break;
+                }
+            case 7: {
+                    if (!(message.names && message.names.length))
+                        message.names = [];
+                    message.names.push(reader.string());
+                    break;
+                }
+            case 8: {
+                    message.pattern = reader.string();
+                    break;
+                }
+            case 9: {
+                    message.subscription = reader.string();
+                    break;
+                }
+            case 10: {
+                    message.originalAction = reader.int32();
+                    break;
+                }
+            case 11: {
+                    message.isWriteAck = reader.bool();
+                    break;
+                }
+            case 12: {
+                    message.path = reader.string();
+                    break;
+                }
+            case 13: {
+                    message.version = reader.int32();
+                    break;
+                }
+            case 14: {
+                    if (message.versions === $util.emptyObject)
+                        message.versions = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.int32();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
+                        }
+                    }
+                    if (key === "__proto__")
+                        $util.makeProp(message.versions, key);
+                    message.versions[key] = value;
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -2283,12 +2544,27 @@ $root.RecordMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for RecordMessage
+     * @function getTypeUrl
+     * @memberof RecordMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    RecordMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/RecordMessage";
+    };
+
     return RecordMessage;
 })();
 
 /**
  * RPC_ACTION enum.
- * @exports RPC_ACTION
+ * @name RPC_ACTION
  * @enum {number}
  * @property {number} RPC_UNKNOWN=0 RPC_UNKNOWN value
  * @property {number} RPC_ERROR=1 RPC_ERROR value
@@ -2366,7 +2642,7 @@ $root.RpcMessage = (function() {
         this.names = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -2510,47 +2786,63 @@ $root.RpcMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    RpcMessage.decode = function decode(reader, length) {
+    RpcMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.RpcMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.correlationId = reader.string();
-                break;
-            case 4:
-                message.isError = reader.bool();
-                break;
-            case 5:
-                message.isAck = reader.bool();
-                break;
-            case 6:
-                if (!(message.names && message.names.length))
-                    message.names = [];
-                message.names.push(reader.string());
-                break;
-            case 7:
-                message.name = reader.string();
-                break;
-            case 9:
-                message.originalAction = reader.int32();
-                break;
-            case 10:
-                message.requestorName = reader.string();
-                break;
-            case 11:
-                message.requestorData = reader.string();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.correlationId = reader.string();
+                    break;
+                }
+            case 4: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 5: {
+                    message.isAck = reader.bool();
+                    break;
+                }
+            case 6: {
+                    if (!(message.names && message.names.length))
+                        message.names = [];
+                    message.names.push(reader.string());
+                    break;
+                }
+            case 7: {
+                    message.name = reader.string();
+                    break;
+                }
+            case 9: {
+                    message.originalAction = reader.int32();
+                    break;
+                }
+            case 10: {
+                    message.requestorName = reader.string();
+                    break;
+                }
+            case 11: {
+                    message.requestorData = reader.string();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -2573,12 +2865,27 @@ $root.RpcMessage = (function() {
         return this.decode(reader, reader.uint32());
     };
 
+    /**
+     * Gets the default type url for RpcMessage
+     * @function getTypeUrl
+     * @memberof RpcMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    RpcMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/RpcMessage";
+    };
+
     return RpcMessage;
 })();
 
 /**
  * STATE_REGISTRY_TOPIC enum.
- * @exports STATE_REGISTRY_TOPIC
+ * @name STATE_REGISTRY_TOPIC
  * @enum {number}
  * @property {number} STATE_REGISTRY_UNKNOWN=0 STATE_REGISTRY_UNKNOWN value
  * @property {number} STATE_REGISTRY_EVENT_SUBSCRIPTIONS=11 STATE_REGISTRY_EVENT_SUBSCRIPTIONS value
@@ -2618,7 +2925,7 @@ $root.STATE_REGISTRY_TOPIC = (function() {
 
 /**
  * STATE_ACTION enum.
- * @exports STATE_ACTION
+ * @name STATE_ACTION
  * @enum {number}
  * @property {number} STATE_UNKNOWN=0 STATE_UNKNOWN value
  * @property {number} STATE_ERROR=1 STATE_ERROR value
@@ -2667,7 +2974,7 @@ $root.StateMessage = (function() {
         this.fullState = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
     }
 
@@ -2781,38 +3088,51 @@ $root.StateMessage = (function() {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    StateMessage.decode = function decode(reader, length) {
+    StateMessage.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StateMessage();
         while (reader.pos < end) {
             var tag = reader.uint32();
+            if (tag === error)
+                break;
             switch (tag >>> 3) {
-            case 1:
-                message.action = reader.int32();
-                break;
-            case 2:
-                message.data = reader.string();
-                break;
-            case 3:
-                message.isError = reader.bool();
-                break;
-            case 19:
-                message.checksum = reader.int32();
-                break;
-            case 20:
-                if (!(message.fullState && message.fullState.length))
-                    message.fullState = [];
-                message.fullState.push(reader.string());
-                break;
-            case 21:
-                message.serverName = reader.string();
-                break;
-            case 22:
-                message.registryTOPIC = reader.int32();
-                break;
+            case 1: {
+                    message.action = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.isError = reader.bool();
+                    break;
+                }
+            case 19: {
+                    message.checksum = reader.int32();
+                    break;
+                }
+            case 20: {
+                    if (!(message.fullState && message.fullState.length))
+                        message.fullState = [];
+                    message.fullState.push(reader.string());
+                    break;
+                }
+            case 21: {
+                    message.serverName = reader.string();
+                    break;
+                }
+            case 22: {
+                    message.registryTOPIC = reader.int32();
+                    break;
+                }
             default:
-                reader.skipType(tag & 7);
+                reader.skipType(tag & 7, long);
                 break;
             }
         }
@@ -2833,6 +3153,21 @@ $root.StateMessage = (function() {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Gets the default type url for StateMessage
+     * @function getTypeUrl
+     * @memberof StateMessage
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    StateMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/StateMessage";
     };
 
     return StateMessage;
