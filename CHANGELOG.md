@@ -1,3 +1,7 @@
+# [1.0.9] - 2026-05-03
+
+- update deps
+
 # [1.0.8] - 2022-06-20
 
 - fix semver mismatch
